@@ -1,0 +1,49 @@
+# ============================================================
+# systemd 서비스 — 라즈베리파이 부팅 시 자동 실행
+# ============================================================
+# 설치 방법:
+#   1. sudo cp lumion.service /etc/systemd/system/
+#   2. sudo systemctl daemon-reload
+#   3. sudo systemctl enable lumion
+#   4. sudo systemctl start lumion
+#
+# 로그 확인: sudo journalctl -u lumion -f
+# ============================================================
+
+[Unit]
+Description=LumiOn Discord Bot Landing Page
+After=network.target
+Wants=network-online.target
+
+[Service]
+Type=notify
+User=pi
+Group=pi
+WorkingDirectory=/home/pi/lumion
+Environment="PATH=/home/pi/lumion/venv/bin:/usr/local/bin:/usr/bin"
+Environment="FORCE_HTTPS=false"
+Environment="WORKERS=2"
+Environment="THREADS=4"
+ExecStart=/home/pi/lumion/venv/bin/gunicorn -c gunicorn_config.py app:app
+ExecReload=/bin/kill -s HUP $MAINPID
+Restart=always
+RestartSec=5
+StartLimitIntervalSec=60
+StartLimitBurst=5
+
+# 보안 샌드박싱
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/pi/lumion/lumion.log
+PrivateTmp=true
+ProtectKernelTunables=true
+ProtectControlGroups=true
+RestrictRealtime=true
+
+# 메모리 제한 (라즈베리파이 보호)
+MemoryMax=256M
+MemoryHigh=200M
+
+[Install]
+WantedBy=multi-user.target

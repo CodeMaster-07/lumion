@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LumiOn — 디스코드 자동 홍보봇</title>
+<link rel="icon" href="/static/lumion.png" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0e0b18;--bg2:#141022;--bg3:#1a1530;
+  --card:#1e1836;--card2:#241e42;
+  --primary:#8b6cff;--primary-light:#a78bfa;--primary-dark:#6c4de6;
+  --accent:#ff5e8a;--accent2:#ffb347;--accent3:#00e5c3;
+  --text:#e8e4f0;--text-sub:#9b93b0;--text-light:#6a6280;
+  --shadow-clay:8px 8px 24px rgba(0,0,0,0.5),-4px -4px 16px rgba(60,48,100,0.25);
+  --shadow-clay-sm:4px 4px 12px rgba(0,0,0,0.45),-2px -2px 8px rgba(60,48,100,0.2);
+  --shadow-clay-hover:12px 12px 32px rgba(0,0,0,0.55),-6px -6px 20px rgba(80,60,140,0.3),0 0 40px rgba(139,108,255,0.12);
+  --shadow-glow:0 0 30px rgba(139,108,255,0.2),0 0 60px rgba(139,108,255,0.08);
+  --radius:24px;--radius-sm:16px;--radius-xs:12px;
+}
+html,body{min-height:100%}
+html{overflow-x:hidden;overflow-y:auto}
+body{
+  font-family:'Outfit','Noto Sans KR',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  overflow-x:hidden;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+}
+
+.bg-layer{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(139,108,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(139,108,255,0.04) 1px,transparent 1px);background-size:60px 60px}
+.bg-noise{position:absolute;inset:0;opacity:.03;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.blob{position:absolute;border-radius:50%;filter:blur(120px);animation:blobFloat 25s ease-in-out infinite}
+.blob-1{width:600px;height:600px;background:var(--primary);opacity:.08;top:-15%;left:-10%}
+.blob-2{width:500px;height:500px;background:var(--accent);opacity:.06;top:35%;right:-12%;animation-delay:-8s}
+.blob-3{width:450px;height:450px;background:var(--accent3);opacity:.05;bottom:-10%;left:25%;animation-delay:-16s}
+@keyframes blobFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(40px,-50px) scale(1.08)}66%{transform:translate(-30px,40px) scale(.92)}}
+
+.container{max-width:1140px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+section{padding:100px 0}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;background:rgba(14,11,24,0.6);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(139,108,255,0);transition:all .3s}
+nav.scrolled{border-bottom-color:rgba(139,108,255,0.12);background:rgba(14,11,24,0.85)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1140px;margin:0 auto;padding:0 24px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.5rem;color:var(--primary-light);text-decoration:none}
+.logo-icon{width:40px;height:40px;border-radius:12px;overflow:hidden;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-clay-sm),0 0 20px rgba(139,108,255,0.2)}
+.logo-icon img{width:100%;height:100%;object-fit:cover}
+.nav-links{display:flex;gap:8px;align-items:center}
+.nav-links a{text-decoration:none;color:var(--text-sub);font-weight:500;font-size:.92rem;padding:8px 18px;border-radius:var(--radius-xs);transition:all .25s}
+.nav-links a:hover{color:var(--primary-light);background:rgba(139,108,255,0.1)}
+.nav-cta{background:var(--primary)!important;color:#fff!important;box-shadow:var(--shadow-clay-sm),0 0 20px rgba(139,108,255,0.15);font-weight:600!important}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:var(--shadow-clay-hover)!important}
+
+/* HERO */
+.hero{padding:160px 0 100px;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--card);padding:8px 20px 8px 12px;border-radius:100px;font-size:.85rem;font-weight:500;color:var(--accent3);box-shadow:var(--shadow-clay-sm);margin-bottom:32px;border:1px solid rgba(0,229,195,0.12);animation:fadeUp .8s ease-out}
+.hero-badge-dot{width:8px;height:8px;border-radius:50%;background:var(--accent3);box-shadow:0 0 10px var(--accent3);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 10px var(--accent3)}50%{opacity:.4;box-shadow:0 0 4px var(--accent3)}}
+.hero h1{font-size:clamp(2.5rem,6vw,4.2rem);font-weight:900;line-height:1.15;margin-bottom:20px;background:linear-gradient(135deg,#fff 0%,var(--primary-light) 45%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:fadeUp .8s ease-out .1s both}
+.hero p{font-size:1.15rem;color:var(--text-sub);max-width:520px;margin:0 auto 40px;font-weight:400;line-height:1.7;animation:fadeUp .8s ease-out .2s both}
+.hero-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fadeUp .8s ease-out .3s both}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:var(--radius-sm);font-family:inherit;font-size:1rem;font-weight:600;text-decoration:none;cursor:pointer;border:none;transition:all .3s ease}
+.btn-primary{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;box-shadow:var(--shadow-clay),0 4px 30px rgba(139,108,255,0.25)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:var(--shadow-clay-hover),0 8px 40px rgba(139,108,255,0.3)}
+.btn-outline{background:var(--card);color:var(--primary-light);box-shadow:var(--shadow-clay);border:1px solid rgba(139,108,255,0.15)}
+.btn-outline:hover{transform:translateY(-3px);box-shadow:var(--shadow-clay-hover);border-color:rgba(139,108,255,0.3)}
+
+/* HERO STATS VISUAL */
+.hero-visual{margin-top:60px;animation:fadeUp .8s ease-out .4s both}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:800px;margin:0 auto}
+.stat-card{background:var(--card);border-radius:var(--radius);padding:32px 20px;box-shadow:var(--shadow-clay);border:1px solid rgba(139,108,255,0.08);text-align:center;position:relative;overflow:hidden;transition:all .35s}
+.stat-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-clay-hover);border-color:rgba(139,108,255,0.2)}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--primary),var(--accent));opacity:.5}
+.stat-icon{font-size:2rem;margin-bottom:12px;display:block}
+.stat-number{font-size:2rem;font-weight:900;color:#fff;line-height:1;margin-bottom:4px}
+.stat-number .counter{display:inline}
+.stat-label{font-size:.82rem;color:var(--text-sub);font-weight:500}
+
+/* TRUST BAR */
+.trust-bar{display:flex;justify-content:center;gap:32px;flex-wrap:wrap;margin-top:48px;animation:fadeUp .8s ease-out .5s both}
+.trust-item{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--text-sub);font-weight:500}
+.trust-icon{font-size:1.1rem}
+
+/* SECTIONS */
+.section-label{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:600;color:var(--primary-light);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px}
+.section-title{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin-bottom:16px;line-height:1.25;color:#fff}
+.section-desc{font-size:1.05rem;color:var(--text-sub);max-width:500px;line-height:1.7}
+.features-header{text-align:center;margin-bottom:60px}
+.features-header .section-desc{margin:0 auto}
+
+/* FEATURES 6 cards */
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.feature-card{background:var(--card);border-radius:var(--radius);padding:36px;box-shadow:var(--shadow-clay);border:1px solid rgba(139,108,255,0.06);transition:all .35s ease;position:relative;overflow:hidden}
+.feature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--accent));opacity:0;transition:opacity .35s}
+.feature-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-clay-hover);border-color:rgba(139,108,255,0.15)}
+.feature-card:hover::before{opacity:1}
+.feature-icon{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:20px;box-shadow:var(--shadow-clay-sm)}
+.fi-1{background:linear-gradient(135deg,rgba(139,108,255,0.2),rgba(139,108,255,0.08))}
+.fi-2{background:linear-gradient(135deg,rgba(255,94,138,0.2),rgba(255,94,138,0.08))}
+.fi-3{background:linear-gradient(135deg,rgba(0,229,195,0.2),rgba(0,229,195,0.08))}
+.fi-4{background:linear-gradient(135deg,rgba(255,179,71,0.2),rgba(255,179,71,0.08))}
+.fi-5{background:linear-gradient(135deg,rgba(100,149,237,0.2),rgba(100,149,237,0.08))}
+.fi-6{background:linear-gradient(135deg,rgba(255,107,237,0.2),rgba(255,107,237,0.08))}
+.feature-card h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;color:#fff}
+.feature-card p{font-size:.92rem;color:var(--text-sub);line-height:1.65}
+
+/* PRICING */
+.pricing{background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 50%,var(--bg) 100%)}
+.pricing-header{margin-bottom:34px;text-align:center}
+.pricing-header .section-desc{margin:0 auto}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;max-width:960px;margin:0 auto}
+.price-card{background:var(--card);border-radius:var(--radius);padding:40px 32px;box-shadow:var(--shadow-clay);border:1px solid rgba(139,108,255,0.06);text-align:center;transition:all .35s ease;position:relative}
+.price-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-clay-hover);border-color:rgba(139,108,255,0.15)}
+.price-card.popular{background:linear-gradient(160deg,var(--primary-dark),#4a2db0);color:#fff;transform:scale(1.04);border:1px solid rgba(139,108,255,0.3);box-shadow:var(--shadow-clay),var(--shadow-glow)}
+.price-card.popular:hover{transform:scale(1.04) translateY(-8px);box-shadow:var(--shadow-clay-hover),0 0 50px rgba(139,108,255,0.25)}
+.popular-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--accent),#ff3070);color:#fff;font-size:.75rem;font-weight:700;padding:5px 20px;border-radius:100px;box-shadow:0 4px 20px rgba(255,94,138,0.4);letter-spacing:1px;text-transform:uppercase}
+.price-emoji{font-size:2.2rem;margin-bottom:12px;display:block}
+.price-card h3{font-size:1.2rem;font-weight:700;margin-bottom:4px;color:#fff}
+.plan-bot-count{
+  display:inline-flex;align-items:baseline;justify-content:center;gap:7px;
+  margin:10px 0 14px;padding:10px 18px;border-radius:18px;
+  background:rgba(139,108,255,0.12);border:1px solid rgba(139,108,255,0.2);
+  box-shadow:inset 3px 3px 10px rgba(0,0,0,0.18),inset -2px -2px 8px rgba(255,255,255,0.035);
+}
+.plan-bot-count strong{font-size:2rem;font-weight:900;line-height:1;color:#fff;letter-spacing:-1px}
+.plan-bot-count span{font-size:.88rem;font-weight:800;color:var(--primary-light)}
+.popular .plan-bot-count{background:rgba(255,255,255,0.14);border-color:rgba(255,255,255,0.22)}
+.popular .plan-bot-count span{color:rgba(255,255,255,.82)}
+.price-card .price-sub{font-size:.85rem;color:var(--text-sub);margin-bottom:12px}
+.popular .price-sub{color:rgba(255,255,255,.65)}
+
+/* ORIGINAL PRICE + DISCOUNT */
+.price-original{font-size:1.1rem;color:var(--text-light);text-decoration:line-through;margin-bottom:2px;font-weight:500}
+.popular .price-original{color:rgba(255,255,255,.4)}
+.price-amount{font-size:2.8rem;font-weight:900;line-height:1;margin-bottom:4px;color:#fff}
+.price-amount span{font-size:1rem;font-weight:500}
+.price-period{font-size:.85rem;color:var(--text-light);margin-bottom:8px}
+.popular .price-period{color:rgba(255,255,255,.55)}
+.price-save{
+  display:inline-block;font-size:.75rem;font-weight:700;
+  padding:4px 12px;border-radius:100px;margin-bottom:24px;
+  background:rgba(0,229,195,0.12);color:var(--accent3);
+  border:1px solid rgba(0,229,195,0.2);
+}
+.popular .price-save{background:rgba(255,255,255,0.12);color:#fff;border-color:rgba(255,255,255,0.2)}
+.price-features{list-style:none;text-align:left;margin-bottom:32px;display:flex;flex-direction:column;gap:12px}
+.price-features li{display:flex;align-items:center;gap:10px;font-size:.9rem;font-weight:500;color:var(--text)}
+.price-features li::before{content:'✓';display:flex;align-items:center;justify-content:center;width:22px;height:22px;min-width:22px;border-radius:8px;font-size:.7rem;font-weight:800}
+.price-card:not(.popular) .price-features li::before{background:rgba(139,108,255,0.15);color:var(--primary-light)}
+.popular .price-features li{color:#fff}
+.popular .price-features li::before{background:rgba(255,255,255,0.15);color:#fff}
+.price-btn{display:inline-flex;align-items:center;justify-content:center;width:100%;padding:14px;border:none;border-radius:var(--radius-sm);font-family:inherit;font-size:.95rem;font-weight:700;cursor:pointer;transition:all .3s;text-decoration:none}
+.price-card:not(.popular) .price-btn{background:var(--bg3);color:var(--primary-light);border:1px solid rgba(139,108,255,0.15)}
+.price-card:not(.popular) .price-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+.popular .price-btn{background:#fff;color:var(--primary-dark);box-shadow:0 4px 20px rgba(0,0,0,0.2)}
+.popular .price-btn:hover{transform:translateY(-2px);box-shadow:0 6px 30px rgba(0,0,0,0.3)}
+
+/* LIMITED OFFER BANNER */
+.limited-banner{
+  max-width:700px;margin:0 auto 46px;
+  background:linear-gradient(135deg,rgba(255,94,138,0.1),rgba(139,108,255,0.1));
+  border:1px solid rgba(255,94,138,0.2);
+  border-radius:var(--radius-sm);padding:16px 24px;
+  display:flex;align-items:center;gap:12px;justify-content:center;
+  animation:pulseBorder 3s ease-in-out infinite;
+}
+@keyframes pulseBorder{0%,100%{border-color:rgba(255,94,138,0.2)}50%{border-color:rgba(255,94,138,0.5)}}
+.limited-banner .lb-icon{font-size:1.3rem;animation:shake 2s ease-in-out infinite}
+@keyframes shake{0%,100%{transform:rotate(0)}25%{transform:rotate(-10deg)}75%{transform:rotate(10deg)}}
+.limited-banner p{font-size:.9rem;font-weight:600;color:var(--accent)}
+.limited-banner p strong{color:#fff}
+
+.extra-plan{max-width:700px;margin:40px auto 0;background:var(--card);border-radius:var(--radius);padding:32px 40px;box-shadow:var(--shadow-clay);border:1px solid rgba(139,108,255,0.06);display:flex;align-items:center;gap:24px}
+.extra-icon{font-size:2.5rem;min-width:60px;text-align:center}
+.extra-plan h4{font-size:1.1rem;font-weight:700;margin-bottom:4px;color:#fff}
+.extra-plan p{font-size:.9rem;color:var(--text-sub);line-height:1.6}
+
+.price-table{max-width:500px;margin:36px auto 0;background:var(--card);border-radius:var(--radius-sm);padding:28px 32px;box-shadow:var(--shadow-clay-sm);border:1px solid rgba(139,108,255,0.06)}
+.price-table h4{font-size:1rem;font-weight:700;margin-bottom:16px;text-align:center;color:#fff}
+.price-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(139,108,255,0.06)}
+.price-row:last-child{border-bottom:none}
+.price-row span:first-child{font-size:.9rem;font-weight:500;color:var(--text)}
+.price-row span:last-child{font-weight:700;color:var(--primary-light)}
+.price-row .per-bot{font-size:.72rem;color:var(--accent3);font-weight:500;margin-left:6px}
+
+/* GUARANTEE */
+.guarantee-box{
+  max-width:600px;margin:32px auto 0;text-align:center;
+  background:rgba(0,229,195,0.05);border:1px solid rgba(0,229,195,0.12);
+  border-radius:var(--radius-sm);padding:24px;
+}
+.guarantee-box .g-icon{font-size:2rem;margin-bottom:8px}
+.guarantee-box h4{font-size:1rem;font-weight:700;color:var(--accent3);margin-bottom:4px}
+.guarantee-box p{font-size:.85rem;color:var(--text-sub);line-height:1.6}
+
+/* STEPS */
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:32px;margin-top:60px}
+.step-card{text-align:center}
+.step-num{width:64px;height:64px;border-radius:20px;background:var(--card);box-shadow:var(--shadow-clay);border:1px solid rgba(139,108,255,0.08);display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:900;color:var(--primary-light);margin:0 auto 20px;transition:all .3s}
+.step-card:hover .step-num{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;transform:rotate(-5deg) scale(1.05);box-shadow:var(--shadow-clay),0 0 25px rgba(139,108,255,0.25)}
+.step-card h3{font-size:1.05rem;font-weight:700;margin-bottom:8px;color:#fff}
+.step-card p{font-size:.88rem;color:var(--text-sub);line-height:1.6}
+
+/* TESTIMONIALS */
+.testimonials{background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%)}
+.testimonial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:60px}
+.testimonial-card{background:var(--card);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow-clay);border:1px solid rgba(139,108,255,0.06);transition:all .35s}
+.testimonial-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-clay-hover);border-color:rgba(139,108,255,0.12)}
+.testimonial-stars{color:var(--accent2);font-size:1rem;margin-bottom:12px;letter-spacing:2px}
+.testimonial-text{font-size:.92rem;color:var(--text-sub);line-height:1.7;margin-bottom:16px;font-style:italic}
+.testimonial-author{display:flex;align-items:center;gap:12px}
+.testimonial-avatar{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:var(--shadow-clay-sm)}
+.ta-1{background:linear-gradient(135deg,rgba(139,108,255,0.25),rgba(139,108,255,0.1))}
+.ta-2{background:linear-gradient(135deg,rgba(255,94,138,0.25),rgba(255,94,138,0.1))}
+.ta-3{background:linear-gradient(135deg,rgba(0,229,195,0.25),rgba(0,229,195,0.1))}
+.ta-4{background:linear-gradient(135deg,rgba(255,179,71,0.25),rgba(255,179,71,0.1))}
+.ta-5{background:linear-gradient(135deg,rgba(100,149,237,0.25),rgba(100,149,237,0.1))}
+.ta-6{background:linear-gradient(135deg,rgba(255,107,237,0.25),rgba(255,107,237,0.1))}
+.testimonial-name{font-weight:700;font-size:.9rem;color:#fff}
+.testimonial-role{font-size:.78rem;color:var(--text-light)}
+.testimonial-badge{display:inline-block;font-size:.68rem;font-weight:600;padding:2px 8px;border-radius:6px;margin-top:4px}
+.tb-verified{background:rgba(0,229,195,0.12);color:var(--accent3)}
+
+/* FAQ */
+.faq-list{max-width:700px;margin:60px auto 0;display:flex;flex-direction:column;gap:16px}
+.faq-item{background:var(--card);border-radius:var(--radius-sm);box-shadow:var(--shadow-clay-sm);overflow:hidden;border:1px solid rgba(139,108,255,0.06);transition:all .3s}
+.faq-item:hover{border-color:rgba(139,108,255,0.12)}
+.faq-q{padding:20px 24px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-weight:600;font-size:.95rem;color:var(--text);user-select:none;transition:color .2s}
+.faq-q:hover{color:var(--primary-light)}
+.faq-arrow{font-size:1.2rem;transition:transform .3s;color:var(--primary-light)}
+.faq-item.open .faq-arrow{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease;padding:0 24px}
+.faq-item.open .faq-a{max-height:200px;padding:0 24px 20px}
+.faq-a p{font-size:.9rem;color:var(--text-sub);line-height:1.65}
+
+/* CTA */
+.cta-section{text-align:center;padding:100px 0 120px}
+.cta-card{background:linear-gradient(160deg,var(--primary-dark),#3a1d8e);border-radius:32px;padding:64px 40px;color:#fff;box-shadow:var(--shadow-clay),0 20px 80px rgba(139,108,255,0.2);position:relative;overflow:hidden;border:1px solid rgba(139,108,255,0.2)}
+.cta-card::before{content:'';position:absolute;width:400px;height:400px;background:rgba(139,108,255,0.08);border-radius:50%;top:-150px;right:-100px}
+.cta-card::after{content:'';position:absolute;width:300px;height:300px;background:rgba(255,94,138,0.05);border-radius:50%;bottom:-120px;left:-80px}
+.cta-card h2{font-size:clamp(1.8rem,4vw,2.4rem);font-weight:800;margin-bottom:12px;position:relative;z-index:1}
+.cta-card p{font-size:1.05rem;opacity:.75;margin-bottom:36px;position:relative;z-index:1}
+.cta-card .btn{background:#fff;color:var(--primary-dark);font-weight:700;box-shadow:0 8px 30px rgba(0,0,0,0.3);position:relative;z-index:1}
+.cta-card .btn:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,0.4)}
+
+footer{text-align:center;padding:40px 0;border-top:1px solid rgba(139,108,255,0.08)}
+footer p{font-size:.85rem;color:var(--text-light)}
+footer a{color:var(--primary-light);text-decoration:none;font-weight:600}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{opacity:1;transform:translateY(0);transition:all .7s ease-out}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+.nav-toggle{display:none;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--text);padding:4px}
+@media(max-width:900px){.features-grid{grid-template-columns:repeat(2,1fr)}.testimonial-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){
+  .nav-links{display:none;position:fixed;top:70px;left:0;right:0;background:rgba(14,11,24,0.95);backdrop-filter:blur(24px);flex-direction:column;padding:20px;gap:4px;box-shadow:0 10px 40px rgba(0,0,0,0.4);border-bottom:1px solid rgba(139,108,255,0.1)}
+  .nav-links.open{display:flex}.nav-toggle{display:block}
+  section{padding:70px 0}.hero{padding:120px 0 70px}
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .pricing-grid{grid-template-columns:1fr;max-width:400px;margin:0 auto}
+  .price-card.popular{transform:scale(1)}.price-card.popular:hover{transform:translateY(-8px)}
+  .extra-plan{flex-direction:column;text-align:center;padding:24px}
+  .features-grid{grid-template-columns:1fr}
+  .steps-grid{grid-template-columns:1fr;max-width:360px;margin:60px auto 0}
+  .testimonial-grid{grid-template-columns:1fr}
+  .cta-card{padding:48px 24px}
+}
+::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--bg3);border-radius:4px}::-webkit-scrollbar-thumb:hover{background:var(--primary-dark)}
+</style>
+</head>
+<body>
+<div class="bg-layer"><div class="bg-grid"></div><div class="bg-noise"></div><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
+
+<nav id="nav"><div class="nav-inner">
+  <a href="#" class="logo"><div class="logo-icon"><img src="/static/lumion.png" alt="LumiOn"></div>LumiOn</a>
+  <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+  <div class="nav-links"><a href="#features">기능</a><a href="#pricing">요금제</a><a href="#how">이용방법</a><a href="#faq">FAQ</a><a href="https://discord.gg/9sAm7hM4t8" class="nav-cta" target="_blank" rel="noopener noreferrer">문의하기</a></div>
+</div></nav>
+
+<!-- HERO -->
+<section class="hero"><div class="container">
+  <div class="hero-badge"><div class="hero-badge-dot"></div>24시간 자동 운영 · 안정적 서비스</div>
+  <h1>디스코드 서버 홍보,<br>이제 자동으로.</h1>
+  <p>LumiOn 홍보봇이 정해진 시간마다 자동으로 홍보 메시지를 게시합니다. 잠든 사이에도, 바쁜 시간에도 서버 홍보는 멈추지 않습니다.</p>
+  <div class="hero-buttons"><a href="#pricing" class="btn btn-primary">요금제 보기 →</a><a href="https://discord.gg/9sAm7hM4t8" class="btn btn-outline" target="_blank" rel="noopener noreferrer">DM 문의하기</a></div>
+
+  <!-- NEW: Stats visual -->
+  <div class="hero-visual">
+    <div class="hero-stats">
+      <div class="stat-card">
+        <span class="stat-icon">🤖</span>
+        <div class="stat-number"><span class="counter" data-target="150">0</span>+</div>
+        <div class="stat-label">운영 중인 봇</div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon">📨</span>
+        <div class="stat-number"><span class="counter" data-target="52000">0</span>+</div>
+        <div class="stat-label">월간 메시지 전송</div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon">⏱️</span>
+        <div class="stat-number"><span class="counter" data-target="99">0</span>%</div>
+        <div class="stat-label">가동률</div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon">⭐</span>
+        <div class="stat-number"><span class="counter" data-target="4.9" data-decimal="true">0</span></div>
+        <div class="stat-label">평균 만족도</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="trust-bar">
+    <div class="trust-item"><span class="trust-icon">🔒</span> 안전한 운영</div>
+    <div class="trust-item"><span class="trust-icon">💳</span> 환불 보장</div>
+    <div class="trust-item"><span class="trust-icon">🛡️</span> 디스코드 TOS 준수</div>
+    <div class="trust-item"><span class="trust-icon">⚡</span> 5분 내 세팅 완료</div>
+  </div>
+</div></section>
+
+<!-- FEATURES 6 cards -->
+<section id="features"><div class="container">
+  <div class="features-header fade-in"><div class="section-label">✦ Features</div><h2 class="section-title">강력한 기능, 심플한 운영</h2><p class="section-desc">복잡한 설정 없이 바로 시작하세요. LumiOn이 모든 것을 자동으로 처리합니다.</p></div>
+  <div class="features-grid">
+    <div class="feature-card fade-in"><div class="feature-icon fi-1">⏰</div><h3>자동 메시지 게시</h3><p>설정한 시간에 맞춰 홍보 메시지를 자동으로 게시합니다. 반복 작업에서 완전히 해방되세요.</p></div>
+    <div class="feature-card fade-in"><div class="feature-icon fi-2">🎯</div><h3>전송 시간 커스터마이징</h3><p>원하는 시간대에 최적화된 게시 스케줄을 자유롭게 설정할 수 있습니다.</p></div>
+    <div class="feature-card fade-in"><div class="feature-icon fi-3">🎨</div><h3>봇 브랜딩 커스텀</h3><p>봇 이름, 프로필 사진, 상태 메시지까지 원하는 대로 변경하여 나만의 봇을 만드세요.</p></div>
+    <div class="feature-card fade-in"><div class="feature-icon fi-4">📊</div><h3>실시간 작동 로그</h3><p>봇의 활동 내역을 실시간으로 확인하세요. 언제, 어디에 메시지가 게시되었는지 한눈에 파악됩니다.</p></div>
+    <div class="feature-card fade-in"><div class="feature-icon fi-5">🛠️</div><h3>맞춤 세팅 지원</h3><p>운영 환경에 따라 최적의 세팅을 지원해드립니다. 복잡한 설정도 걱정 마세요.</p></div>
+    <div class="feature-card fade-in"><div class="feature-icon fi-6">🔄</div><h3>다중 메시지 로테이션</h3><p>여러 홍보 메시지를 등록하면 자동으로 번갈아 게시합니다. 반복감 없는 홍보가 가능합니다.</p></div>
+  </div>
+</div></section>
+
+<!-- PRICING -->
+<section id="pricing" class="pricing"><div class="container">
+  <div class="pricing-header fade-in"><div class="section-label">✦ Pricing</div><h2 class="section-title">합리적인 가격, 확실한 효과</h2><p class="section-desc">운영 규모에 맞게 선택하세요. 봇이 많을수록 더 큰 할인이 적용됩니다.</p></div>
+
+  <!-- Limited offer -->
+  <div class="limited-banner fade-in">
+    <span class="lb-icon">🔥</span>
+    <p>5월 한정 — 첫 달 <strong>20% 할인</strong> 이벤트 진행 중! 남은 자리가 얼마 없습니다.</p>
+  </div>
+
+  <div class="pricing-grid">
+    <!-- Starter -->
+    <div class="price-card fade-in">
+      <span class="price-emoji">🌱</span><h3>베이직</h3><div class="plan-bot-count"><strong>1</strong><span>봇</span></div><p class="price-sub">가볍게 시작하기</p>
+      <div class="price-original">31,000원</div>
+      <div class="price-amount">25,000<span>원</span></div>
+      <p class="price-period">월 이용료</p>
+      <div class="price-save">🎉 월 6,000원 절약</div>
+      <ul class="price-features"><li>홍보 메시지 자동 게시</li><li>전송 시간 설정</li><li>봇 브랜딩 커스텀</li><li>실시간 로그 확인</li></ul>
+      <a href="https://discord.gg/9sAm7hM4t8" class="price-btn" target="_blank" rel="noopener noreferrer">시작하기</a>
+    </div>
+    <!-- Growth -->
+    <div class="price-card popular fade-in">
+      <div class="popular-badge">BEST</div>
+      <span class="price-emoji">🚀</span><h3>스탠다드</h3><div class="plan-bot-count"><strong>3</strong><span>봇</span></div><p class="price-sub">본격적인 성장</p>
+      <div class="price-original">93,000원</div>
+      <div class="price-amount">70,000<span>원</span></div>
+      <p class="price-period">월 이용료</p>
+      <div class="price-save">🎉 월 23,000원 절약</div>
+      <ul class="price-features"><li>베이직의 모든 기능</li><li>봇 3개 동시 운영</li><li>맞춤 세팅 지원</li><li>우선 응답 지원</li></ul>
+      <a href="https://discord.gg/9sAm7hM4t8" class="price-btn" target="_blank" rel="noopener noreferrer">가장 인기 있는 플랜</a>
+    </div>
+    <!-- Scale -->
+    <div class="price-card fade-in">
+      <span class="price-emoji">⚡</span><h3>프리미엄</h3><div class="plan-bot-count"><strong>5</strong><span>봇</span></div><p class="price-sub">대규모 운영</p>
+      <div class="price-original">155,000원</div>
+      <div class="price-amount">110,000<span>원</span></div>
+      <p class="price-period">월 이용료</p>
+      <div class="price-save">🎉 월 45,000원 절약</div>
+      <ul class="price-features"><li>스탠다드의 모든 기능</li><li>봇 5개 동시 운영</li><li>최우선 기술 지원</li><li>전용 대시보드 제공</li></ul>
+      <a href="https://discord.gg/9sAm7hM4t8" class="price-btn" target="_blank" rel="noopener noreferrer">시작하기</a>
+    </div>
+  </div>
+
+  <div class="extra-plan fade-in"><div class="extra-icon">➕</div><div><h4>5개 초과? 추가 봇 1개당 월 20,000원</h4><p>대량 운영 및 맞춤 세팅 가능합니다. 10개 이상 운영 시 별도 협의를 통해 더 큰 할인을 받으실 수 있습니다.</p></div></div>
+
+  <div class="price-table fade-in"><h4>전체 요금 한눈에 보기</h4>
+    <div class="price-row"><span>봇 1개</span><span>25,000원/월</span></div>
+    <div class="price-row"><span>봇 2개</span><span>45,000원/월</span></div>
+    <div class="price-row"><span>봇 3개</span><span>70,000원/월</span></div>
+    <div class="price-row"><span>봇 4개</span><span>90,000원/월</span></div>
+    <div class="price-row"><span>봇 5개</span><span>110,000원/월</span></div>
+  </div>
+
+  <!-- Guarantee -->
+  <div class="guarantee-box fade-in">
+    <div class="g-icon">🛡️</div>
+    <h4>3일 무료 체험 · 100% 환불 보장</h4>
+    <p>만족하지 못하시면 3일 내 전액 환불해드립니다. 리스크 없이 직접 경험해보세요.</p>
+  </div>
+</div></section>
+
+<!-- HOW -->
+<section id="how"><div class="container">
+  <div class="features-header fade-in"><div class="section-label">✦ How it works</div><h2 class="section-title">3단계로 간단하게</h2><p class="section-desc">복잡한 과정 없이, DM 한 번이면 충분합니다.</p></div>
+  <div class="steps-grid">
+    <div class="step-card fade-in"><div class="step-num">1</div><h3>DM으로 문의</h3><p>원하는 봇 수량과 운영 환경을 알려주세요. 맞춤 상담을 진행합니다.</p></div>
+    <div class="step-card fade-in"><div class="step-num">2</div><h3>맞춤 세팅</h3><p>봇 이름, 프로필, 메시지, 스케줄 등 원하는 대로 세팅해드립니다.</p></div>
+    <div class="step-card fade-in"><div class="step-num">3</div><h3>자동 운영 시작</h3><p>설정이 완료되면 24시간 자동으로 홍보가 진행됩니다. 편하게 쉬세요!</p></div>
+  </div>
+</div></section>
+
+<!-- TESTIMONIALS 6 cards -->
+<section class="testimonials"><div class="container">
+  <div class="features-header fade-in"><div class="section-label">✦ Reviews</div><h2 class="section-title">이미 많은 분들이 사용 중</h2><p class="section-desc">실제 LumiOn 사용자분들의 솔직한 후기입니다.</p></div>
+  <div class="testimonial-grid">
+    <div class="testimonial-card fade-in">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"매번 수동으로 홍보하던 게 봇 하나로 해결됐습니다. 서버 유입이 눈에 띄게 늘었어요!"</p>
+      <div class="testimonial-author"><div class="testimonial-avatar ta-1">🎮</div><div><div class="testimonial-name">게임서버 운영자 A</div><div class="testimonial-role">봇 3개 · 6개월 사용</div><span class="testimonial-badge tb-verified">✓ 인증된 사용자</span></div></div>
+    </div>
+    <div class="testimonial-card fade-in">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"세팅도 빠르고 로그 확인도 편해서 관리가 정말 쉽습니다. 가격 대비 최고예요."</p>
+      <div class="testimonial-author"><div class="testimonial-avatar ta-2">🏰</div><div><div class="testimonial-name">클랜 리더 B</div><div class="testimonial-role">봇 2개 · 4개월 사용</div><span class="testimonial-badge tb-verified">✓ 인증된 사용자</span></div></div>
+    </div>
+    <div class="testimonial-card fade-in">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"커뮤니티 5개를 동시에 홍보하는데, LumiOn 없이는 불가능했을 겁니다. 강추합니다!"</p>
+      <div class="testimonial-author"><div class="testimonial-avatar ta-3">💬</div><div><div class="testimonial-name">커뮤니티 매니저 C</div><div class="testimonial-role">봇 5개 · 8개월 사용</div><span class="testimonial-badge tb-verified">✓ 인증된 사용자</span></div></div>
+    </div>
+    <div class="testimonial-card fade-in">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"다른 홍보봇 써봤는데 비교도 안 됩니다. 안정성이 압도적이고 한 번도 끊긴 적이 없어요."</p>
+      <div class="testimonial-author"><div class="testimonial-avatar ta-4">⚔️</div><div><div class="testimonial-name">서버 관리자 D</div><div class="testimonial-role">봇 4개 · 5개월 사용</div><span class="testimonial-badge tb-verified">✓ 인증된 사용자</span></div></div>
+    </div>
+    <div class="testimonial-card fade-in">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"DM 문의하니까 10분 만에 세팅 완료. 이 가격에 이 퀄리티면 진짜 혜자입니다."</p>
+      <div class="testimonial-author"><div class="testimonial-avatar ta-5">🎯</div><div><div class="testimonial-name">홍보방 운영자 E</div><div class="testimonial-role">봇 1개 · 3개월 사용</div><span class="testimonial-badge tb-verified">✓ 인증된 사용자</span></div></div>
+    </div>
+    <div class="testimonial-card fade-in">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"솔직히 반신반의했는데 써보니까 유입 3배 올랐습니다. 이제 없으면 안 되는 존재예요."</p>
+      <div class="testimonial-author"><div class="testimonial-avatar ta-6">🚀</div><div><div class="testimonial-name">스트리머 F</div><div class="testimonial-role">봇 2개 · 7개월 사용</div><span class="testimonial-badge tb-verified">✓ 인증된 사용자</span></div></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- FAQ -->
+<section id="faq"><div class="container">
+  <div class="features-header fade-in"><div class="section-label">✦ FAQ</div><h2 class="section-title">자주 묻는 질문</h2></div>
+  <div class="faq-list">
+    <div class="faq-item fade-in"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">봇은 24시간 작동하나요?<span class="faq-arrow">▾</span></div><div class="faq-a"><p>네, 안정적인 서버에서 24시간 365일 중단 없이 운영됩니다. 간헐적 점검 시에는 사전 공지 드립니다.</p></div></div>
+    <div class="faq-item fade-in"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">어떤 채널에서 사용 가능한가요?<span class="faq-arrow">▾</span></div><div class="faq-a"><p>허용된 홍보 채널에서만 사용 가능합니다. 디스코드 서비스 약관을 준수하며, 운영자와 사전 협의 후 채널을 설정합니다.</p></div></div>
+    <div class="faq-item fade-in"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">결제 방법은 무엇인가요?<span class="faq-arrow">▾</span></div><div class="faq-a"><p>계좌이체, 토스 등 다양한 방법을 지원합니다. DM으로 문의 시 상세 안내드리겠습니다.</p></div></div>
+    <div class="faq-item fade-in"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">중도 해지가 가능한가요?<span class="faq-arrow">▾</span></div><div class="faq-a"><p>네, 언제든 해지 가능하며 잔여 기간에 대한 환불도 협의 가능합니다.</p></div></div>
+    <div class="faq-item fade-in"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">무료 체험이 가능한가요?<span class="faq-arrow">▾</span></div><div class="faq-a"><p>네, 3일간 무료 체험이 가능합니다. 체험 후 만족하지 못하시면 비용이 청구되지 않습니다.</p></div></div>
+  </div>
+</div></section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact"><div class="container">
+  <div class="cta-card fade-in">
+    <h2>지금 시작하세요</h2>
+    <p>DM 한 번으로 자동 홍보가 시작됩니다. 더 이상 수동 홍보에 시간을 쓰지 마세요.</p>
+    <a href="https://discord.gg/9sAm7hM4t8" class="btn" target="_blank" rel="noopener noreferrer">💬 DM으로 문의하기</a>
+  </div>
+</div></section>
+
+<footer><div class="container">
+  <p style="margin-bottom:8px"><a href="#">LumiOn</a> — 디스코드 자동 홍보 솔루션</p>
+  <p>© 2025 LumiOn. All rights reserved.</p>
+</div></footer>
+
+<script>
+// Nav scroll
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>20)});
+
+// Fade in
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.15});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+
+// Mobile nav
+document.querySelectorAll('.nav-links a').forEach(a=>{a.addEventListener('click',()=>document.querySelector('.nav-links').classList.remove('open'))});
+
+// Counter animation
+function animateCounters(){
+  document.querySelectorAll('.counter').forEach(c=>{
+    const target=parseFloat(c.dataset.target);
+    const isDecimal=c.dataset.decimal==='true';
+    const duration=2000;
+    const start=performance.now();
+    function update(now){
+      const elapsed=now-start;
+      const progress=Math.min(elapsed/duration,1);
+      const eased=1-Math.pow(1-progress,3);
+      const current=eased*target;
+      if(isDecimal){c.textContent=current.toFixed(1)}
+      else if(target>=1000){c.textContent=Math.floor(current).toLocaleString()}
+      else{c.textContent=Math.floor(current)}
+      if(progress<1)requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  });
+}
+const statsObs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){animateCounters();statsObs.unobserve(e.target)}});
+},{threshold:0.3});
+const statsEl=document.querySelector('.hero-stats');
+if(statsEl)statsObs.observe(statsEl);
+</script>
+</body>
+</html>
