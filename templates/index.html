@@ -134,21 +134,12 @@ nav.scrolled{border-bottom-color:rgba(139,108,255,0.12);background:rgba(14,11,24
 .popular .plan-bot-count span{color:rgba(255,255,255,.82)}
 .price-card .price-sub{font-size:.85rem;color:var(--text-sub);margin-bottom:12px}
 .popular .price-sub{color:rgba(255,255,255,.65)}
-
-/* ORIGINAL PRICE + DISCOUNT */
-.price-original{font-size:1.1rem;color:var(--text-light);text-decoration:line-through;margin-bottom:2px;font-weight:500}
-.popular .price-original{color:rgba(255,255,255,.4)}
-.price-amount{font-size:2.8rem;font-weight:900;line-height:1;margin-bottom:4px;color:#fff}
+.price-amount{font-size:2.8rem;font-weight:900;line-height:1;margin-bottom:6px;color:#fff}
 .price-amount span{font-size:1rem;font-weight:500}
-.price-period{font-size:.85rem;color:var(--text-light);margin-bottom:8px}
+.price-period{font-size:.85rem;color:var(--text-light);margin-bottom:6px}
 .popular .price-period{color:rgba(255,255,255,.55)}
-.price-save{
-  display:inline-block;font-size:.75rem;font-weight:700;
-  padding:4px 12px;border-radius:100px;margin-bottom:24px;
-  background:rgba(0,229,195,0.12);color:var(--accent3);
-  border:1px solid rgba(0,229,195,0.2);
-}
-.popular .price-save{background:rgba(255,255,255,0.12);color:#fff;border-color:rgba(255,255,255,0.2)}
+.price-daily{font-size:.92rem;font-weight:700;color:var(--accent3);margin-bottom:22px}
+.popular .price-daily{color:#fff}
 .price-features{list-style:none;text-align:left;margin-bottom:32px;display:flex;flex-direction:column;gap:12px}
 .price-features li{display:flex;align-items:center;gap:10px;font-size:.9rem;font-weight:500;color:var(--text)}
 .price-features li::before{content:'✓';display:flex;align-items:center;justify-content:center;width:22px;height:22px;min-width:22px;border-radius:8px;font-size:.7rem;font-weight:800}
@@ -176,18 +167,42 @@ nav.scrolled{border-bottom-color:rgba(139,108,255,0.12);background:rgba(14,11,24
 .limited-banner p{font-size:.9rem;font-weight:600;color:var(--accent)}
 .limited-banner p strong{color:#fff}
 
-.extra-plan{max-width:700px;margin:40px auto 0;background:var(--card);border-radius:var(--radius);padding:32px 40px;box-shadow:var(--shadow-clay);border:1px solid rgba(139,108,255,0.06);display:flex;align-items:center;gap:24px}
+.extra-plan{max-width:960px;margin:40px auto 0;background:var(--card);border-radius:var(--radius);padding:32px 40px;box-shadow:var(--shadow-clay);border:1px solid rgba(139,108,255,0.06);display:flex;align-items:flex-start;gap:24px}
 .extra-icon{font-size:2.5rem;min-width:60px;text-align:center}
 .extra-plan h4{font-size:1.1rem;font-weight:700;margin-bottom:4px;color:#fff}
 .extra-plan p{font-size:.9rem;color:var(--text-sub);line-height:1.6}
-
-.price-table{max-width:500px;margin:36px auto 0;background:var(--card);border-radius:var(--radius-sm);padding:28px 32px;box-shadow:var(--shadow-clay-sm);border:1px solid rgba(139,108,255,0.06)}
-.price-table h4{font-size:1rem;font-weight:700;margin-bottom:16px;text-align:center;color:#fff}
-.price-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(139,108,255,0.06)}
-.price-row:last-child{border-bottom:none}
-.price-row span:first-child{font-size:.9rem;font-weight:500;color:var(--text)}
-.price-row span:last-child{font-weight:700;color:var(--primary-light)}
-.price-row .per-bot{font-size:.72rem;color:var(--accent3);font-weight:500;margin-left:6px}
+.extra-plan-copy{flex:1}
+.extra-plan-sub{margin-top:16px}
+.extra-plan-list{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:20px 0 0;padding:0}
+.extra-plan-list li{background:rgba(139,108,255,0.08);border:1px solid rgba(139,108,255,0.12);border-radius:18px;padding:16px 18px}
+.extra-plan-list strong{display:block;font-size:.92rem;color:#fff;margin-bottom:6px}
+.extra-plan-list span{display:block;font-size:.86rem;color:var(--text-sub);line-height:1.55}
+.rate-pill{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;font-size:.73rem;font-weight:700;border:1px solid rgba(139,108,255,0.16);background:rgba(139,108,255,0.1);color:var(--primary-light);margin-top:12px}
+.rate-pill.hot{background:rgba(255,94,138,0.12);border-color:rgba(255,94,138,0.18);color:#ffb7cb}
+.rate-pill.max{background:rgba(0,229,195,0.12);border-color:rgba(0,229,195,0.18);color:var(--accent3)}
+.price-table-toggle-wrap{display:flex;justify-content:center;margin-top:28px}
+.price-table-toggle{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 24px;border:none;border-radius:var(--radius-sm);font-family:inherit;font-size:.95rem;font-weight:700;cursor:pointer;transition:all .3s ease;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;box-shadow:var(--shadow-clay-sm),0 4px 24px rgba(139,108,255,0.2)}
+.price-table-toggle:hover{transform:translateY(-2px);box-shadow:var(--shadow-clay-hover)}
+.price-table-panel{max-width:1040px;margin:22px auto 0;background:var(--card);border-radius:var(--radius);padding:28px 28px 24px;box-shadow:var(--shadow-clay-sm);border:1px solid rgba(139,108,255,0.08)}
+.price-table-panel[hidden]{display:none}
+.price-table-panel h4{font-size:1.12rem;font-weight:800;color:#fff;margin-bottom:14px}
+.price-table-intro{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+.table-highlight{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;font-size:.8rem;font-weight:700;background:rgba(139,108,255,0.12);border:1px solid rgba(139,108,255,0.16);color:var(--text)}
+.table-highlight strong{color:#fff}
+.price-table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--radius-sm)}
+.price-table-grid{width:100%;min-width:820px;border-collapse:collapse;background:rgba(20,16,34,0.4);border-radius:var(--radius-sm);overflow:hidden}
+.price-table-grid th,.price-table-grid td{padding:16px 14px;border-bottom:1px solid rgba(139,108,255,0.08);vertical-align:top;text-align:left}
+.price-table-grid th{font-size:.82rem;font-weight:700;color:var(--primary-light);background:rgba(139,108,255,0.08);letter-spacing:.02em}
+.price-table-grid td{font-size:.9rem;color:var(--text-sub)}
+.price-table-grid tr:last-child td{border-bottom:none}
+.price-table-grid td:first-child,.price-table-grid td:nth-child(2){white-space:nowrap}
+.price-month{display:flex;flex-direction:column;gap:6px}
+.price-original{font-size:.8rem;color:var(--text-light);text-decoration:line-through}
+.price-current{font-size:1rem;font-weight:800;color:#fff}
+.discount-badge{display:inline-flex;align-items:center;width:max-content;padding:4px 10px;border-radius:999px;font-size:.72rem;font-weight:700;background:rgba(0,229,195,0.12);border:1px solid rgba(0,229,195,0.18);color:var(--accent3)}
+.tier-badge{display:inline-flex;align-items:center;width:max-content;padding:4px 10px;border-radius:999px;font-size:.72rem;font-weight:700;border:1px solid rgba(139,108,255,0.16);background:rgba(139,108,255,0.1);color:var(--primary-light)}
+.tier-badge.hot{background:rgba(255,94,138,0.12);border-color:rgba(255,94,138,0.18);color:#ffb7cb}
+.tier-badge.max{background:rgba(0,229,195,0.12);border-color:rgba(0,229,195,0.18);color:var(--accent3)}
 
 /* GUARANTEE */
 .guarantee-box{
@@ -267,6 +282,8 @@ footer a{color:var(--primary-light);text-decoration:none;font-weight:600}
   .pricing-grid{grid-template-columns:1fr;max-width:400px;margin:0 auto}
   .price-card.popular{transform:scale(1)}.price-card.popular:hover{transform:translateY(-8px)}
   .extra-plan{flex-direction:column;text-align:center;padding:24px}
+  .extra-plan-list{grid-template-columns:1fr}
+  .price-table-panel{padding:22px 16px 18px}
   .features-grid{grid-template-columns:1fr}
   .steps-grid{grid-template-columns:1fr;max-width:360px;margin:60px auto 0}
   .testimonial-grid{grid-template-columns:1fr}
@@ -342,54 +359,109 @@ footer a{color:var(--primary-light);text-decoration:none;font-weight:600}
 <section id="pricing" class="pricing"><div class="container">
   <div class="pricing-header fade-in"><div class="section-label">✦ Pricing</div><h2 class="section-title">합리적인 가격, 확실한 효과</h2><p class="section-desc">운영 규모에 맞게 선택하세요. 봇이 많을수록 더 큰 할인이 적용됩니다.</p></div>
 
-  <!-- Limited offer -->
   <div class="limited-banner fade-in">
     <span class="lb-icon">🔥</span>
-    <p>5월 한정 — 첫 달 <strong>20% 할인</strong> 이벤트 진행 중! 남은 자리가 얼마 없습니다.</p>
+    <p>신규 유입형 요금제 적용 <strong>10개 이상 자동 할인</strong> · <strong>15개 이상 최대 할인</strong></p>
   </div>
 
   <div class="pricing-grid">
-    <!-- Starter -->
     <div class="price-card fade-in">
       <span class="price-emoji">🌱</span><h3>베이직</h3><div class="plan-bot-count"><strong>1</strong><span>봇</span></div><p class="price-sub">가볍게 시작하기</p>
-      <div class="price-original">31,000원</div>
-      <div class="price-amount">25,000<span>원</span></div>
+      <div class="price-amount">15,000<span>원</span></div>
       <p class="price-period">월 이용료</p>
-      <div class="price-save">🎉 월 6,000원 절약</div>
+      <div class="price-daily">하루 700원</div>
       <ul class="price-features"><li>홍보 메시지 자동 게시</li><li>전송 시간 설정</li><li>봇 브랜딩 커스텀</li><li>실시간 로그 확인</li></ul>
       <a href="https://discord.gg/9sAm7hM4t8" class="price-btn" target="_blank" rel="noopener noreferrer">시작하기</a>
     </div>
-    <!-- Growth -->
     <div class="price-card popular fade-in">
       <div class="popular-badge">BEST</div>
       <span class="price-emoji">🚀</span><h3>스탠다드</h3><div class="plan-bot-count"><strong>3</strong><span>봇</span></div><p class="price-sub">본격적인 성장</p>
-      <div class="price-original">93,000원</div>
-      <div class="price-amount">70,000<span>원</span></div>
+      <div class="price-amount">39,000<span>원</span></div>
       <p class="price-period">월 이용료</p>
-      <div class="price-save">🎉 월 23,000원 절약</div>
+      <div class="price-daily">하루 1,800원</div>
       <ul class="price-features"><li>베이직의 모든 기능</li><li>봇 3개 동시 운영</li><li>맞춤 세팅 지원</li><li>우선 응답 지원</li></ul>
       <a href="https://discord.gg/9sAm7hM4t8" class="price-btn" target="_blank" rel="noopener noreferrer">가장 인기 있는 플랜</a>
     </div>
-    <!-- Scale -->
     <div class="price-card fade-in">
       <span class="price-emoji">⚡</span><h3>프리미엄</h3><div class="plan-bot-count"><strong>5</strong><span>봇</span></div><p class="price-sub">대규모 운영</p>
-      <div class="price-original">155,000원</div>
-      <div class="price-amount">110,000<span>원</span></div>
+      <div class="price-amount">65,000<span>원</span></div>
       <p class="price-period">월 이용료</p>
-      <div class="price-save">🎉 월 45,000원 절약</div>
+      <div class="price-daily">하루 3,000원</div>
       <ul class="price-features"><li>스탠다드의 모든 기능</li><li>봇 5개 동시 운영</li><li>최우선 기술 지원</li><li>전용 대시보드 제공</li></ul>
       <a href="https://discord.gg/9sAm7hM4t8" class="price-btn" target="_blank" rel="noopener noreferrer">시작하기</a>
     </div>
   </div>
 
-  <div class="extra-plan fade-in"><div class="extra-icon">➕</div><div><h4>5개 초과? 추가 봇 1개당 월 20,000원</h4><p>대량 운영 및 맞춤 세팅 가능합니다. 10개 이상 운영 시 별도 협의를 통해 더 큰 할인을 받으실 수 있습니다.</p></div></div>
+  <div class="extra-plan fade-in">
+    <div class="extra-icon">➕</div>
+    <div class="extra-plan-copy">
+      <h4>추가 봇 요금은 구간별로 자동 적용됩니다</h4>
+      <p>10개 이상부터 대량 할인이 자동 적용됩니다. 15개 이상 운영 시 최대 할인 단가가 적용됩니다.</p>
+      <p class="extra-plan-sub">20개 운영 시 기존가 대비 월 28,000원 절약</p>
+      <ul class="extra-plan-list">
+        <li>
+          <strong>6~9개</strong>
+          <span>추가 봇 1개당 600원/일 · 12,000원/월</span>
+          <span class="rate-pill">일반 추가 봇</span>
+        </li>
+        <li>
+          <strong>10~14개</strong>
+          <span>추가 봇 1개당 500원/일 · 10,000원/월</span>
+          <span class="rate-pill hot">🔥 대량 할인</span>
+        </li>
+        <li>
+          <strong>15개 이상</strong>
+          <span>추가 봇 1개당 450원/일 · 9,000원/월</span>
+          <span class="rate-pill max">💎 최대 할인</span>
+        </li>
+      </ul>
+    </div>
+  </div>
 
-  <div class="price-table fade-in"><h4>전체 요금 한눈에 보기</h4>
-    <div class="price-row"><span>봇 1개</span><span>25,000원/월</span></div>
-    <div class="price-row"><span>봇 2개</span><span>45,000원/월</span></div>
-    <div class="price-row"><span>봇 3개</span><span>70,000원/월</span></div>
-    <div class="price-row"><span>봇 4개</span><span>90,000원/월</span></div>
-    <div class="price-row"><span>봇 5개</span><span>110,000원/월</span></div>
+  <div class="price-table-toggle-wrap fade-in">
+    <button type="button" class="price-table-toggle" id="price-table-toggle" aria-expanded="false" aria-controls="full-price-table">전체 요금표 보기</button>
+  </div>
+
+  <div class="price-table-panel fade-in" id="full-price-table" hidden>
+    <h4>전체 요금 한눈에 보기</h4>
+    <div class="price-table-intro">
+      <div class="table-highlight">🔥 <strong>10개 이상부터 대량 할인이 자동 적용됩니다.</strong></div>
+      <div class="table-highlight">💸 <strong>20개 운영 시 기존가 대비 월 28,000원 절약</strong></div>
+    </div>
+    <div class="price-table-scroll">
+      <table class="price-table-grid">
+        <thead>
+          <tr>
+            <th>봇 개수</th>
+            <th>일 이용료</th>
+            <th>월 요금</th>
+            <th>비고</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1개</td><td>700원/일</td><td><div class="price-month"><span class="price-current">15,000원/월</span></div></td><td>베이직</td></tr>
+          <tr><td>2개</td><td>1,300원/일</td><td><div class="price-month"><span class="price-current">27,000원/월</span></div></td><td>소규모 운영</td></tr>
+          <tr><td>3개</td><td>1,800원/일</td><td><div class="price-month"><span class="price-current">39,000원/월</span></div></td><td>스탠다드 BEST</td></tr>
+          <tr><td>4개</td><td>2,400원/일</td><td><div class="price-month"><span class="price-current">52,000원/월</span></div></td><td>확장 운영</td></tr>
+          <tr><td>5개</td><td>3,000원/일</td><td><div class="price-month"><span class="price-current">65,000원/월</span></div></td><td>프리미엄</td></tr>
+          <tr><td>6개</td><td>3,600원/일</td><td><div class="price-month"><span class="price-current">77,000원/월</span></div></td><td>추가 봇 적용</td></tr>
+          <tr><td>7개</td><td>4,200원/일</td><td><div class="price-month"><span class="price-current">89,000원/월</span></div></td><td>추가 봇 적용</td></tr>
+          <tr><td>8개</td><td>4,800원/일</td><td><div class="price-month"><span class="price-current">101,000원/월</span></div></td><td>추가 봇 적용</td></tr>
+          <tr><td>9개</td><td>5,400원/일</td><td><div class="price-month"><span class="price-current">113,000원/월</span></div></td><td>추가 봇 적용</td></tr>
+          <tr><td>10개</td><td>5,900원/일</td><td><div class="price-month"><span class="price-original">125,000원/월</span><span class="price-current">123,000원/월</span><span class="discount-badge">월 -2,000원 할인</span></div></td><td><span class="tier-badge hot">🔥 대량 할인 시작</span></td></tr>
+          <tr><td>11개</td><td>6,400원/일</td><td><div class="price-month"><span class="price-original">137,000원/월</span><span class="price-current">133,000원/월</span><span class="discount-badge">월 -4,000원 할인</span></div></td><td><span class="tier-badge hot">🔥 대량 할인</span></td></tr>
+          <tr><td>12개</td><td>6,900원/일</td><td><div class="price-month"><span class="price-original">149,000원/월</span><span class="price-current">143,000원/월</span><span class="discount-badge">월 -6,000원 할인</span></div></td><td><span class="tier-badge hot">🔥 대량 할인</span></td></tr>
+          <tr><td>13개</td><td>7,400원/일</td><td><div class="price-month"><span class="price-original">161,000원/월</span><span class="price-current">153,000원/월</span><span class="discount-badge">월 -8,000원 할인</span></div></td><td><span class="tier-badge hot">🔥 대량 할인</span></td></tr>
+          <tr><td>14개</td><td>7,900원/일</td><td><div class="price-month"><span class="price-original">173,000원/월</span><span class="price-current">163,000원/월</span><span class="discount-badge">월 -10,000원 할인</span></div></td><td><span class="tier-badge hot">🔥 대량 할인</span></td></tr>
+          <tr><td>15개</td><td>8,350원/일</td><td><div class="price-month"><span class="price-original">185,000원/월</span><span class="price-current">172,000원/월</span><span class="discount-badge">월 -13,000원 할인</span></div></td><td><span class="tier-badge max">💎 최대 할인</span></td></tr>
+          <tr><td>16개</td><td>8,800원/일</td><td><div class="price-month"><span class="price-original">197,000원/월</span><span class="price-current">181,000원/월</span><span class="discount-badge">월 -16,000원 할인</span></div></td><td><span class="tier-badge max">💎 최대 할인</span></td></tr>
+          <tr><td>17개</td><td>9,250원/일</td><td><div class="price-month"><span class="price-original">209,000원/월</span><span class="price-current">190,000원/월</span><span class="discount-badge">월 -19,000원 할인</span></div></td><td><span class="tier-badge max">💎 최대 할인</span></td></tr>
+          <tr><td>18개</td><td>9,700원/일</td><td><div class="price-month"><span class="price-original">221,000원/월</span><span class="price-current">199,000원/월</span><span class="discount-badge">월 -22,000원 할인</span></div></td><td><span class="tier-badge max">💎 최대 할인</span></td></tr>
+          <tr><td>19개</td><td>10,150원/일</td><td><div class="price-month"><span class="price-original">233,000원/월</span><span class="price-current">208,000원/월</span><span class="discount-badge">월 -25,000원 할인</span></div></td><td><span class="tier-badge max">💎 최대 할인</span></td></tr>
+          <tr><td>20개</td><td>10,600원/일</td><td><div class="price-month"><span class="price-original">245,000원/월</span><span class="price-current">217,000원/월</span><span class="discount-badge">월 -28,000원 할인</span></div></td><td><span class="tier-badge max">💎 최대 할인</span></td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <!-- Guarantee -->
@@ -509,6 +581,17 @@ const statsObs=new IntersectionObserver((entries)=>{
 },{threshold:0.3});
 const statsEl=document.querySelector('.hero-stats');
 if(statsEl)statsObs.observe(statsEl);
+
+const priceTableToggle=document.getElementById('price-table-toggle');
+const fullPriceTable=document.getElementById('full-price-table');
+if(priceTableToggle&&fullPriceTable){
+  priceTableToggle.addEventListener('click',()=>{
+    const expanded=priceTableToggle.getAttribute('aria-expanded')==='true';
+    priceTableToggle.setAttribute('aria-expanded',String(!expanded));
+    priceTableToggle.textContent=expanded?'전체 요금표 보기':'전체 요금표 닫기';
+    fullPriceTable.hidden=expanded;
+  });
+}
 </script>
 </body>
 </html>
