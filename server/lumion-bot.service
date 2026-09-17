@@ -1,0 +1,25 @@
+[Unit]
+Description=LumiOn Discord management bot
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+User=pi_01
+Group=pi_01
+WorkingDirectory=/home/pi_01/lumion_bot
+EnvironmentFile=/home/pi_01/lumion_bot/.env
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/home/pi_01/lumion_bot/venv/bin/python /home/pi_01/lumion_bot/bot.py
+Restart=always
+RestartSec=5
+TimeoutStopSec=20
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=read-only
+ReadWritePaths=/home/pi_01/lumion_bot
+
+[Install]
+WantedBy=multi-user.target

@@ -305,15 +305,74 @@ body{background:radial-gradient(circle at 50% -10%,rgba(72,64,255,.3),transparen
 @media(max-width:900px){.hero-shell{grid-template-columns:1fr}.hero{text-align:center}.hero-copy{max-width:760px;margin:auto}.hero p{margin-left:auto;margin-right:auto}.hero-buttons{justify-content:center}.hero-bot-scene{min-height:350px}.hero-visual{margin-top:28px}}
 @media(max-width:768px){.hero{padding:118px 0 68px}.hero h1{font-size:clamp(2.65rem,13vw,4.2rem)}.hero-bot-scene{min-height:300px}.bot-avatar{width:185px;height:185px;font-size:5.8rem}.orbit{width:310px;height:168px}.neon-price-grid{grid-template-columns:repeat(2,1fr);gap:14px}.new-price{font-size:1.45rem}.bulk-contact{flex-direction:column;text-align:center;gap:6px}}
 @media(max-width:430px){.container{padding:0 16px}.pricing .section-title{font-size:2rem;word-break:keep-all}.pricing .section-desc{word-break:keep-all}.neon-price-grid{grid-template-columns:1fr;max-width:330px;gap:22px}.neon-price-card{padding:27px 22px 24px}.new-price{font-size:1.8rem}.hero-bot-scene{min-height:270px}.orbit{width:270px;height:150px}}
+
+/* Contracted clan showcase */
+.clan-showcase{padding:88px 0 104px;position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(7,3,23,0),rgba(18,7,45,.78) 45%,rgba(7,3,23,0))}
+.clan-showcase::before{content:'';position:absolute;width:760px;height:360px;left:50%;top:48%;transform:translate(-50%,-50%);background:radial-gradient(ellipse,rgba(199,62,255,.2),transparent 67%);filter:blur(24px);pointer-events:none}
+.clan-showcase-head{text-align:center;margin-bottom:42px;position:relative;z-index:2}
+.clan-proof{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;margin-bottom:16px;border-radius:999px;background:rgba(109,248,255,.08);border:1px solid rgba(109,248,255,.22);color:#9ffaff;font-size:.76rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.clan-proof::before{content:'';width:7px;height:7px;border-radius:50%;background:#6df8ff;box-shadow:0 0 14px #6df8ff}
+.clan-showcase .section-title{margin-bottom:12px}.clan-showcase .section-desc{margin:0 auto;max-width:650px}
+.clan-count{color:#fff;font-weight:800}
+.clan-marquee{position:relative;display:grid;gap:18px;z-index:2}
+.clan-marquee::before,.clan-marquee::after{content:'';position:absolute;top:-8px;bottom:-8px;width:clamp(30px,8vw,150px);z-index:5;pointer-events:none}
+.clan-marquee::before{left:0;background:linear-gradient(90deg,#09031c,transparent)}
+.clan-marquee::after{right:0;background:linear-gradient(-90deg,#09031c,transparent)}
+.clan-row{width:100%;overflow:hidden}
+.clan-track{display:flex;gap:16px;width:max-content;will-change:transform;animation:clanScroll 55s linear infinite}
+.clan-row.reverse .clan-track{animation-direction:reverse;animation-duration:62s}
+.clan-marquee:hover .clan-track{animation-play-state:paused}
+.clan-card{width:178px;flex:0 0 178px;padding:10px 10px 13px;border-radius:22px;background:linear-gradient(155deg,rgba(42,20,84,.9),rgba(14,8,39,.94));border:1px solid rgba(211,132,255,.2);box-shadow:0 16px 40px rgba(0,0,0,.3),inset 0 1px rgba(255,255,255,.06);transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+.clan-card:hover{transform:translateY(-5px) scale(1.02);border-color:rgba(255,91,207,.55);box-shadow:0 20px 48px rgba(0,0,0,.42),0 0 26px rgba(255,75,202,.16)}
+.clan-card img,.clan-logo-fallback{display:block;width:156px;height:126px;border-radius:15px;object-fit:cover;background:#11082a}
+.clan-logo-fallback{display:grid;place-items:center;background:radial-gradient(circle at 30% 20%,#6c3bda,#160832 70%);color:#fff;font-size:2rem;font-weight:900;letter-spacing:.08em;text-shadow:0 0 18px rgba(255,255,255,.5)}
+.clan-name{display:block;margin-top:11px;color:#fff;text-align:center;font-size:.88rem;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.clan-card small{display:block;margin-top:2px;color:#9d8dbb;text-align:center;font-size:.66rem;font-weight:600;letter-spacing:.04em}
+.clan-result-strip{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;margin-top:38px;position:relative;z-index:2}
+.clan-result{display:flex;align-items:center;gap:9px;color:#bfb3d5;font-size:.84rem;font-weight:600}
+.clan-result b{color:#fff}.clan-result i{font-style:normal;color:#ff72d2;font-size:1.05rem}
+.ui-icon{display:inline-block;width:1.25em;height:1.25em;flex:0 0 auto;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.18em}
+.section-mark{display:inline-block;width:7px;height:7px;border-radius:2px;background:currentColor;transform:rotate(45deg);box-shadow:0 0 12px currentColor}
+.ui-icon.fill{fill:currentColor;stroke:none}.icon-button{display:inline-flex;align-items:center;justify-content:center}.hero-buttons .ui-icon{width:1.05em;height:1.05em}.heart-float .ui-icon{width:1em;height:1em;fill:currentColor;stroke:none}.bot-avatar .ui-icon{width:1.25em;height:1.25em;stroke-width:1.35}.stat-icon .ui-icon{width:1.35em;height:1.35em}.feature-icon .ui-icon{width:1.5em;height:1.5em}.mini-bot .ui-icon{width:1.05em;height:1.05em}.price-arrow .ui-icon{width:1.2em;height:1.2em}.lb-icon .ui-icon{width:1.2em;height:1.2em}.price-ribbon .ui-icon{width:1em;height:1em}.tag-icon .ui-icon,.g-icon .ui-icon{width:1.35em;height:1.35em}.testimonial-avatar .ui-icon{width:1.35em;height:1.35em}.faq-arrow .ui-icon{width:1em;height:1em;transition:transform .3s}.faq-item.open .faq-arrow .ui-icon{transform:rotate(180deg)}.nav-toggle .ui-icon{width:1.35em;height:1.35em}
+@keyframes clanScroll{to{transform:translateX(calc(-50% - 8px))}}
+@media(max-width:768px){.clan-showcase{padding:68px 0 78px}.clan-card{width:146px;flex-basis:146px}.clan-card img,.clan-logo-fallback{width:124px;height:104px}.clan-track{gap:12px}.clan-result-strip{gap:14px 24px;margin-top:30px}.clan-marquee::before,.clan-marquee::after{width:34px}}
+@media(prefers-reduced-motion:reduce){.clan-track{animation-play-state:paused}}
 </style>
 </head>
 <body>
 <div class="bg-layer"><div class="bg-grid"></div><div class="bg-noise"></div><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div></div>
+<svg aria-hidden="true" width="0" height="0" style="position:absolute"><defs>
+  <symbol id="i-bot" viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="13" rx="4"/><path d="M12 7V4M9 4h6"/><path d="M8.5 13h.01M15.5 13h.01M8 17h8"/></symbol>
+  <symbol id="i-message" viewBox="0 0 24 24"><path d="M5 5.5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H11l-5 3v-3.2a2 2 0 0 1-3-1.8v-8a2 2 0 0 1 2-2Z"/><path d="M7 10h10M7 14h6"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h4"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 20 6v5c0 5-3.2 8.2-8 10-4.8-1.8-8-5-8-10V6l8-3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3.5 2"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></symbol>
+  <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 4c-4.8 0-8.5 3.4-8.5 7.8 0 3.5 2.5 6.2 5.8 6.2H11c1 0 1.6-1 1.2-1.9-.5-1.1.3-2.3 1.5-2.3h1.8c3.3 0 5-2 5-4.5C20.5 6.4 16.8 4 12 4Z"/><path d="M7.5 10h.01M10 7.5h.01M14 7.5h.01M17 10h.01"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 19V5M4 19h17"/><path d="m7 15 3-4 3 2 5-6"/></symbol>
+  <symbol id="i-tool" viewBox="0 0 24 24"><path d="m14.5 6.5 3-3 3 3-3 3"/><path d="m16 8-8.5 8.5a2.1 2.1 0 0 0 3 3L19 11"/><path d="m5 5 3 3M4 4l4 4"/></symbol>
+  <symbol id="i-rotate" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14.5-4L3 10"/><path d="M3 5v5h5M4 13a8 8 0 0 0 14.5 4L21 14"/><path d="M21 19v-5h-5"/></symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 21c4 0 7-2.7 7-6.7 0-3-1.5-5.5-4.4-8.3.1 2.2-.9 3.6-2.2 4.4.2-3.3-1.4-5.8-4.2-7.4.4 3.2-3.2 5.6-3.2 10.3C5 18.3 8 21 12 21Z"/><path d="M9.5 16.3c0-1.3.8-2.2 2.4-3.5-.1 1.5.5 2.2 1.2 2.8"/></symbol>
+  <symbol id="i-crown" viewBox="0 0 24 24"><path d="m4 8 4 3 4-6 4 6 4-3-2 10H6L4 8Z"/><path d="M6 21h12"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="m4 5 8-1 8 8-8 8-8-8V5Z"/><circle cx="8" cy="8" r="1"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 1.5 6.5L20 12l-6.5 1.5L12 20l-1.5-6.5L4 12l6.5-2.5L12 3Z"/></symbol>
+  <symbol id="i-game" viewBox="0 0 24 24"><path d="M6 9h12a4 4 0 0 1 3.7 5.5l-1.2 3.1a2 2 0 0 1-3.7.2l-1.3-2.3H8.5l-1.3 2.3a2 2 0 0 1-3.7-.2l-1.2-3.1A4 4 0 0 1 6 9Z"/><path d="M7 12v4M5 14h4M16 13h.01M18 15h.01"/></symbol>
+  <symbol id="i-castle" viewBox="0 0 24 24"><path d="M4 20V9h3V6h3v3h4V6h3v3h3v11H4Z"/><path d="M9 20v-5h6v5M7 12h.01M17 12h.01"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5Z"/><path d="M8 9h8M8 12h5"/></symbol>
+  <symbol id="i-sword" viewBox="0 0 24 24"><path d="m5 19 5-5M13 6l5-3 2 2-3 5"/><path d="m8 16-2-2 8-8 2 2-8 8ZM4 20l3-1"/></symbol>
+  <symbol id="i-rocket" viewBox="0 0 24 24"><path d="M14 4c2.5-1.5 5-1 6-1 0 1 .5 3.5-1 6l-7 7-4-4 6-8Z"/><circle cx="16.5" cy="7.5" r="1"/><path d="M8 13H5l-2 2 4 1M11 16v3l-2 2-1-4"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+</defs></svg>
+
+<script>function icon(name, cls='ui-icon'){return `<svg class="${cls}" aria-hidden="true"><use href="#i-${name}"></use></svg>`}</script>
 
 <nav id="nav"><div class="nav-inner">
   <a href="#" class="logo"><div class="logo-icon"><img src="/static/lumion.png" alt="LumiOn"></div>LumiOn</a>
-  <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
-  <div class="nav-links"><a href="#features">기능</a><a href="#pricing">요금제</a><a href="#how">이용방법</a><a href="#faq">FAQ</a><a href="https://discord.gg/9sAm7hM4t8" class="nav-cta" target="_blank" rel="noopener noreferrer">문의하기</a></div>
+  <button class="nav-toggle" aria-label="메뉴 열기" onclick="document.querySelector('.nav-links').classList.toggle('open')"><svg class="ui-icon" aria-hidden="true"><use href="#i-menu"></use></svg></button>
+  <div class="nav-links"><a href="#clans">함께한 클랜</a><a href="#features">기능</a><a href="#pricing">요금제</a><a href="#how">이용방법</a><a href="#faq">FAQ</a><a href="https://discord.gg/9sAm7hM4t8" class="nav-cta" target="_blank" rel="noopener noreferrer">문의하기</a></div>
 </div></nav>
 
 <!-- HERO -->
@@ -323,11 +382,11 @@ body{background:radial-gradient(circle at 50% -10%,rgba(72,64,255,.3),transparen
       <div class="hero-badge"><div class="hero-badge-dot"></div>24시간 자동 운영 · 3일 무료 체험</div>
       <h1>홍보는 자동으로,<br><em>성장은 더 빠르게.</em></h1>
       <p>루미온 홍보봇이 가장 효과적인 시간에 메시지를 자동 게시합니다. 잠든 사이에도 서버의 성장은 멈추지 않습니다.</p>
-      <div class="hero-buttons"><a href="#pricing" class="btn btn-primary">할인 요금 보기 →</a><a href="https://discord.gg/9sAm7hM4t8" class="btn btn-outline" target="_blank" rel="noopener noreferrer">💬 무료 상담</a></div>
+      <div class="hero-buttons"><a href="#pricing" class="btn btn-primary">할인 요금 보기 <svg class="ui-icon" aria-hidden="true"><use href="#i-arrow"></use></svg></a><a href="https://discord.gg/9sAm7hM4t8" class="btn btn-outline" target="_blank" rel="noopener noreferrer"><svg class="ui-icon" aria-hidden="true"><use href="#i-chat"></use></svg> 무료 상담</a></div>
     </div>
     <div class="hero-bot-scene" aria-label="루미온 홍보봇 캐릭터">
-      <div class="orbit"></div><span class="heart-float h1">♥</span><span class="heart-float h2">♥</span><span class="heart-float h3">✦</span>
-      <div class="bot-avatar"><span>🤖</span></div>
+      <div class="orbit"></div><span class="heart-float h1"><svg class="ui-icon fill" aria-hidden="true"><use href="#i-spark"></use></svg></span><span class="heart-float h2"><svg class="ui-icon fill" aria-hidden="true"><use href="#i-spark"></use></svg></span><span class="heart-float h3"><svg class="ui-icon fill" aria-hidden="true"><use href="#i-spark"></use></svg></span>
+      <div class="bot-avatar"><svg class="ui-icon" aria-hidden="true"><use href="#i-bot"></use></svg></div>
     </div>
   </div>
 
@@ -335,22 +394,22 @@ body{background:radial-gradient(circle at 50% -10%,rgba(72,64,255,.3),transparen
   <div class="hero-visual">
     <div class="hero-stats">
       <div class="stat-card">
-        <span class="stat-icon">🤖</span>
+        <span class="stat-icon"><svg class="ui-icon" aria-hidden="true"><use href="#i-bot"></use></svg></span>
         <div class="stat-number"><span class="counter" data-target="150">0</span>+</div>
         <div class="stat-label">운영 중인 봇</div>
       </div>
       <div class="stat-card">
-        <span class="stat-icon">📨</span>
+        <span class="stat-icon"><svg class="ui-icon" aria-hidden="true"><use href="#i-message"></use></svg></span>
         <div class="stat-number"><span class="counter" data-target="52000">0</span>+</div>
         <div class="stat-label">월간 메시지 전송</div>
       </div>
       <div class="stat-card">
-        <span class="stat-icon">⏱️</span>
+        <span class="stat-icon"><svg class="ui-icon" aria-hidden="true"><use href="#i-clock"></use></svg></span>
         <div class="stat-number"><span class="counter" data-target="99">0</span>%</div>
         <div class="stat-label">가동률</div>
       </div>
       <div class="stat-card">
-        <span class="stat-icon">⭐</span>
+        <span class="stat-icon"><svg class="ui-icon" aria-hidden="true"><use href="#i-spark"></use></svg></span>
         <div class="stat-number"><span class="counter" data-target="4.9" data-decimal="true">0</span></div>
         <div class="stat-label">평균 만족도</div>
       </div>
@@ -358,52 +417,99 @@ body{background:radial-gradient(circle at 50% -10%,rgba(72,64,255,.3),transparen
   </div>
 
   <div class="trust-bar">
-    <div class="trust-item"><span class="trust-icon">🔒</span> 안전한 운영</div>
-    <div class="trust-item"><span class="trust-icon">💳</span> 환불 보장</div>
-    <div class="trust-item"><span class="trust-icon">🛡️</span> 디스코드 TOS 준수</div>
-    <div class="trust-item"><span class="trust-icon">⚡</span> 5분 내 세팅 완료</div>
+    <div class="trust-item"><span class="trust-icon"><svg class="ui-icon" aria-hidden="true"><use href="#i-lock"></use></svg></span> 안전한 운영</div>
+    <div class="trust-item"><span class="trust-icon"><svg class="ui-icon" aria-hidden="true"><use href="#i-card"></use></svg></span> 환불 보장</div>
+    <div class="trust-item"><span class="trust-icon"><svg class="ui-icon" aria-hidden="true"><use href="#i-shield"></use></svg></span> 디스코드 TOS 준수</div>
+    <div class="trust-item"><span class="trust-icon"><svg class="ui-icon" aria-hidden="true"><use href="#i-spark"></use></svg></span> 5분 내 세팅 완료</div>
   </div>
 </div></section>
 
+<!-- CONTRACTED CLANS -->
+<section id="clans" class="clan-showcase">
+  <div class="container clan-showcase-head fade-in">
+    <div class="clan-proof">Promotion proof</div>
+    <h2 class="section-title">홍보 효과로 증명한<br>루미온의 파트너 클랜</h2>
+    <p class="section-desc">지금까지 루미온과 함께한 <span class="clan-count">27개 클랜</span>입니다. 각 클랜의 색은 그대로, 홍보는 더 멀리 전달했습니다.</p>
+  </div>
+  <div class="clan-marquee" aria-label="루미온과 계약한 클랜 목록">
+    <div class="clan-row"><div class="clan-track">
+      <article class="clan-card"><img src="/static/clans/elim.webp" alt="Elim 클랜" loading="lazy"><span class="clan-name">Elim</span><small>LUMION PARTNER</small></article>
+      <article class="clan-card"><img src="/static/clans/blc.webp" alt="BLC 클랜" loading="lazy"><span class="clan-name">BLC</span><small>LUMION PARTNER</small></article>
+      <article class="clan-card"><img src="/static/clans/enforce.webp" alt="ENFORCE 클랜" loading="lazy"><span class="clan-name">ENFORCE</span><small>LUMION PARTNER</small></article>
+      <article class="clan-card"><img src="/static/clans/lao.webp" alt="LAO 클랜" loading="lazy"><span class="clan-name">LAO</span><small>LUMION PARTNER</small></article>
+      <article class="clan-card"><img src="/static/clans/x4c.webp" alt="X4C 클랜" loading="lazy"><span class="clan-name">X4C</span><small>LUMION PARTNER</small></article>
+      <article class="clan-card"><img src="/static/clans/gsr.webp" alt="GSR 클랜" loading="lazy"><span class="clan-name">GSR</span><small>LUMION PARTNER</small></article>
+      <article class="clan-card"><img src="/static/clans/oxiclin.webp" alt="옥시클린 클랜" loading="lazy"><span class="clan-name">옥시클린</span><small>LUMION PARTNER</small></article>
+      <article class="clan-card"><img src="/static/clans/iam.webp" alt="IAM 클랜" loading="lazy"><span class="clan-name">IAM</span><small>LUMION PARTNER</small></article>
+      <article class="clan-card"><img src="/static/clans/dio.webp" alt="DIO 클랜" loading="lazy"><span class="clan-name">DIO</span><small>LUMION PARTNER</small></article>
+      <article class="clan-card"><img src="/static/clans/del.webp" alt="DEL 클랜" loading="lazy"><span class="clan-name">DEL</span><small>LUMION PARTNER</small></article>
+      <article class="clan-card"><img src="/static/clans/mhr.webp" alt="MHR 클랜" loading="lazy"><span class="clan-name">MHR</span><small>LUMION PARTNER</small></article>
+      <article class="clan-card"><div class="clan-logo-fallback" aria-label="NXS 클랜 로고">NXS</div><span class="clan-name">NXS</span><small>LUMION PARTNER</small></article>
+      <article class="clan-card"><img src="/static/clans/p2g.webp" alt="P2G 클랜" loading="lazy"><span class="clan-name">P2G</span><small>LUMION PARTNER</small></article>
+      <article class="clan-card"><img src="/static/clans/lov3.webp" alt="LOV3 클랜" loading="lazy"><span class="clan-name">LOV3</span><small>LUMION PARTNER</small></article>
+    </div></div>
+    <div class="clan-row reverse"><div class="clan-track">
+      <article class="clan-card"><img src="/static/clans/drf.webp" alt="DRF 클랜" loading="lazy"><span class="clan-name">DRF</span><small>LUMION PARTNER</small></article>
+      <article class="clan-card"><img src="/static/clans/pr.webp" alt="PR 클랜" loading="lazy"><span class="clan-name">PR</span><small>LUMION PARTNER</small></article>
+      <article class="clan-card"><img src="/static/clans/asura.webp" alt="아수라 클랜" loading="lazy"><span class="clan-name">아수라</span><small>LUMION PARTNER</small></article>
+      <article class="clan-card"><img src="/static/clans/dtt.webp" alt="DTT 클랜" loading="lazy"><span class="clan-name">DTT</span><small>LUMION PARTNER</small></article>
+      <article class="clan-card"><img src="/static/clans/mot-jop-z.webp" alt="Mot Jop z 클랜" loading="lazy"><span class="clan-name">Mot_Jop_z</span><small>LUMION PARTNER</small></article>
+      <article class="clan-card"><img src="/static/clans/casa.webp" alt="CASA 클랜" loading="lazy"><span class="clan-name">CASA</span><small>LUMION PARTNER</small></article>
+      <article class="clan-card"><img src="/static/clans/707.webp" alt="707 클랜" loading="lazy"><span class="clan-name">707</span><small>LUMION PARTNER</small></article>
+      <article class="clan-card"><img src="/static/clans/egg.webp" alt="EGG 클랜" loading="lazy"><span class="clan-name">EGG</span><small>LUMION PARTNER</small></article>
+      <article class="clan-card"><img src="/static/clans/oni.webp" alt="ONI 클랜" loading="lazy"><span class="clan-name">ONI</span><small>LUMION PARTNER</small></article>
+      <article class="clan-card"><img src="/static/clans/gttl.webp" alt="GTTL 클랜" loading="lazy"><span class="clan-name">GTTL</span><small>LUMION PARTNER</small></article>
+      <article class="clan-card"><img src="/static/clans/maple.webp" alt="메이플 클랜" loading="lazy"><span class="clan-name">메이플</span><small>LUMION PARTNER</small></article>
+      <article class="clan-card"><img src="/static/clans/vlf.webp" alt="VLF 클랜" loading="lazy"><span class="clan-name">VLF</span><small>LUMION PARTNER</small></article>
+      <article class="clan-card"><img src="/static/clans/crowz.webp" alt="CROWZ 클랜" loading="lazy"><span class="clan-name">CROWZ</span><small>LUMION PARTNER</small></article>
+    </div></div>
+  </div>
+  <div class="container clan-result-strip fade-in">
+    <span class="clan-result"><i><svg class="ui-icon fill" aria-hidden="true"><use href="#i-spark"></use></svg></i><b>24시간</b> 자동 홍보</span>
+    <span class="clan-result"><i><svg class="ui-icon fill" aria-hidden="true"><use href="#i-spark"></use></svg></i><b>클랜 맞춤</b> 프로필 운영</span>
+    <span class="clan-result"><i><svg class="ui-icon fill" aria-hidden="true"><use href="#i-spark"></use></svg></i><b>반복 노출</b>로 꾸준한 유입</span>
+  </div>
+</section>
+
 <!-- FEATURES 6 cards -->
 <section id="features"><div class="container">
-  <div class="features-header fade-in"><div class="section-label">✦ Features</div><h2 class="section-title">강력한 기능, 심플한 운영</h2><p class="section-desc">복잡한 설정 없이 바로 시작하세요. LumiOn이 모든 것을 자동으로 처리합니다.</p></div>
+  <div class="features-header fade-in"><div class="section-label"><span class="section-mark" aria-hidden="true"></span> Features</div><h2 class="section-title">강력한 기능, 심플한 운영</h2><p class="section-desc">복잡한 설정 없이 바로 시작하세요. LumiOn이 모든 것을 자동으로 처리합니다.</p></div>
   <div class="features-grid">
-    <div class="feature-card fade-in"><div class="feature-icon fi-1">⏰</div><h3>자동 메시지 게시</h3><p>설정한 시간에 맞춰 홍보 메시지를 자동으로 게시합니다. 반복 작업에서 완전히 해방되세요.</p></div>
-    <div class="feature-card fade-in"><div class="feature-icon fi-2">🎯</div><h3>전송 시간 커스터마이징</h3><p>원하는 시간대에 최적화된 게시 스케줄을 자유롭게 설정할 수 있습니다.</p></div>
-    <div class="feature-card fade-in"><div class="feature-icon fi-3">🎨</div><h3>봇 브랜딩 커스텀</h3><p>봇 이름, 프로필 사진, 상태 메시지까지 원하는 대로 변경하여 나만의 봇을 만드세요.</p></div>
-    <div class="feature-card fade-in"><div class="feature-icon fi-4">📊</div><h3>실시간 작동 로그</h3><p>봇의 활동 내역을 실시간으로 확인하세요. 언제, 어디에 메시지가 게시되었는지 한눈에 파악됩니다.</p></div>
-    <div class="feature-card fade-in"><div class="feature-icon fi-5">🛠️</div><h3>맞춤 세팅 지원</h3><p>운영 환경에 따라 최적의 세팅을 지원해드립니다. 복잡한 설정도 걱정 마세요.</p></div>
-    <div class="feature-card fade-in"><div class="feature-icon fi-6">🔄</div><h3>다중 메시지 로테이션</h3><p>여러 홍보 메시지를 등록하면 자동으로 번갈아 게시합니다. 반복감 없는 홍보가 가능합니다.</p></div>
+    <div class="feature-card fade-in"><div class="feature-icon fi-1"><svg class="ui-icon" aria-hidden="true"><use href="#i-clock"></use></svg></div><h3>자동 메시지 게시</h3><p>설정한 시간에 맞춰 홍보 메시지를 자동으로 게시합니다. 반복 작업에서 완전히 해방되세요.</p></div>
+    <div class="feature-card fade-in"><div class="feature-icon fi-2"><svg class="ui-icon" aria-hidden="true"><use href="#i-target"></use></svg></div><h3>전송 시간 커스터마이징</h3><p>원하는 시간대에 최적화된 게시 스케줄을 자유롭게 설정할 수 있습니다.</p></div>
+    <div class="feature-card fade-in"><div class="feature-icon fi-3"><svg class="ui-icon" aria-hidden="true"><use href="#i-palette"></use></svg></div><h3>봇 브랜딩 커스텀</h3><p>봇 이름, 프로필 사진, 상태 메시지까지 원하는 대로 변경하여 나만의 봇을 만드세요.</p></div>
+    <div class="feature-card fade-in"><div class="feature-icon fi-4"><svg class="ui-icon" aria-hidden="true"><use href="#i-chart"></use></svg></div><h3>실시간 작동 로그</h3><p>봇의 활동 내역을 실시간으로 확인하세요. 언제, 어디에 메시지가 게시되었는지 한눈에 파악됩니다.</p></div>
+    <div class="feature-card fade-in"><div class="feature-icon fi-5"><svg class="ui-icon" aria-hidden="true"><use href="#i-tool"></use></svg></div><h3>맞춤 세팅 지원</h3><p>운영 환경에 따라 최적의 세팅을 지원해드립니다. 복잡한 설정도 걱정 마세요.</p></div>
+    <div class="feature-card fade-in"><div class="feature-icon fi-6"><svg class="ui-icon" aria-hidden="true"><use href="#i-rotate"></use></svg></div><h3>다중 메시지 로테이션</h3><p>여러 홍보 메시지를 등록하면 자동으로 번갈아 게시합니다. 반복감 없는 홍보가 가능합니다.</p></div>
   </div>
 </div></section>
 
 <!-- PRICING -->
 <section id="pricing" class="pricing"><div class="container">
-  <div class="pricing-header fade-in"><div class="section-label">✦ Pricing</div><h2 class="section-title">합리적인 가격, 확실한 효과</h2><p class="section-desc">운영 규모에 맞게 선택하세요. 봇이 많을수록 더 큰 할인이 적용됩니다.</p></div>
+  <div class="pricing-header fade-in"><div class="section-label"><span class="section-mark" aria-hidden="true"></span> Pricing</div><h2 class="section-title">합리적인 가격, 확실한 효과</h2><p class="section-desc">운영 규모에 맞게 선택하세요. 봇이 많을수록 더 큰 할인이 적용됩니다.</p></div>
 
   <div class="limited-banner fade-in">
-    <span class="lb-icon">🔥</span>
+    <span class="lb-icon"><svg class="ui-icon" aria-hidden="true"><use href="#i-flame"></use></svg></span>
     <p>루미온 런칭 할인 적용 중 · <strong>최대 월 35,000원 할인</strong></p>
   </div>
 
   <div class="neon-price-grid" aria-label="1개부터 10개까지 할인 요금표">
-    <article class="neon-price-card fade-in"><div class="mini-bot">🤖</div><div class="bot-count">1개</div><div class="old-price">15,000원/월</div><span class="price-arrow">↓</span><div class="new-price">11,000<small>원/월</small></div><span class="save-badge">월 4,000원 할인</span></article>
-    <article class="neon-price-card fade-in"><div class="mini-bot">🤖</div><div class="bot-count">2개</div><div class="old-price">27,000원/월</div><span class="price-arrow">↓</span><div class="new-price">20,000<small>원/월</small></div><span class="save-badge">월 7,000원 할인</span></article>
-    <article class="neon-price-card featured fade-in"><div class="price-ribbon">♛ BEST</div><div class="mini-bot">🤖</div><div class="bot-count">3개</div><div class="old-price">39,000원/월</div><span class="price-arrow">↓</span><div class="new-price">29,000<small>원/월</small></div><span class="save-badge">월 10,000원 할인</span></article>
-    <article class="neon-price-card fade-in"><div class="mini-bot">🤖</div><div class="bot-count">4개</div><div class="old-price">52,000원/월</div><span class="price-arrow">↓</span><div class="new-price">38,000<small>원/월</small></div><span class="save-badge">월 14,000원 할인</span></article>
-    <article class="neon-price-card fade-in"><div class="mini-bot">🤖</div><div class="bot-count">5개</div><div class="old-price">65,000원/월</div><span class="price-arrow">↓</span><div class="new-price">47,000<small>원/월</small></div><span class="save-badge">월 18,000원 할인</span></article>
-    <article class="neon-price-card fade-in"><div class="mini-bot">🤖</div><div class="bot-count">6개</div><div class="old-price">77,000원/월</div><span class="price-arrow">↓</span><div class="new-price">56,000<small>원/월</small></div><span class="save-badge">월 21,000원 할인</span></article>
-    <article class="neon-price-card fade-in"><div class="mini-bot">🤖</div><div class="bot-count">7개</div><div class="old-price">89,000원/월</div><span class="price-arrow">↓</span><div class="new-price">65,000<small>원/월</small></div><span class="save-badge">월 24,000원 할인</span></article>
-    <article class="neon-price-card fade-in"><div class="mini-bot">🤖</div><div class="bot-count">8개</div><div class="old-price">101,000원/월</div><span class="price-arrow">↓</span><div class="new-price">74,000<small>원/월</small></div><span class="save-badge">월 27,000원 할인</span></article>
-    <article class="neon-price-card fade-in"><div class="mini-bot">🤖</div><div class="bot-count">9개</div><div class="old-price">113,000원/월</div><span class="price-arrow">↓</span><div class="new-price">83,000<small>원/월</small></div><span class="save-badge">월 30,000원 할인</span></article>
-    <article class="neon-price-card featured fade-in"><div class="price-ribbon">♥ 최대 할인</div><div class="mini-bot">🤖</div><div class="bot-count">10개</div><div class="old-price">125,000원/월</div><span class="price-arrow">↓</span><div class="new-price">90,000<small>원/월</small></div><span class="save-badge">월 35,000원 할인</span></article>
+    <article class="neon-price-card fade-in"><div class="mini-bot"><svg class="ui-icon" aria-hidden="true"><use href="#i-bot"></use></svg></div><div class="bot-count">1개</div><div class="old-price">15,000원/월</div><span class="price-arrow"><svg class="ui-icon" aria-hidden="true"><use href="#i-arrow"></use></svg></span><div class="new-price">11,000<small>원/월</small></div><span class="save-badge">월 4,000원 할인</span></article>
+    <article class="neon-price-card fade-in"><div class="mini-bot"><svg class="ui-icon" aria-hidden="true"><use href="#i-bot"></use></svg></div><div class="bot-count">2개</div><div class="old-price">27,000원/월</div><span class="price-arrow"><svg class="ui-icon" aria-hidden="true"><use href="#i-arrow"></use></svg></span><div class="new-price">20,000<small>원/월</small></div><span class="save-badge">월 7,000원 할인</span></article>
+    <article class="neon-price-card featured fade-in"><div class="price-ribbon"><svg class="ui-icon" aria-hidden="true"><use href="#i-crown"></use></svg> BEST</div><div class="mini-bot"><svg class="ui-icon" aria-hidden="true"><use href="#i-bot"></use></svg></div><div class="bot-count">3개</div><div class="old-price">39,000원/월</div><span class="price-arrow"><svg class="ui-icon" aria-hidden="true"><use href="#i-arrow"></use></svg></span><div class="new-price">29,000<small>원/월</small></div><span class="save-badge">월 10,000원 할인</span></article>
+    <article class="neon-price-card fade-in"><div class="mini-bot"><svg class="ui-icon" aria-hidden="true"><use href="#i-bot"></use></svg></div><div class="bot-count">4개</div><div class="old-price">52,000원/월</div><span class="price-arrow"><svg class="ui-icon" aria-hidden="true"><use href="#i-arrow"></use></svg></span><div class="new-price">38,000<small>원/월</small></div><span class="save-badge">월 14,000원 할인</span></article>
+    <article class="neon-price-card fade-in"><div class="mini-bot"><svg class="ui-icon" aria-hidden="true"><use href="#i-bot"></use></svg></div><div class="bot-count">5개</div><div class="old-price">65,000원/월</div><span class="price-arrow"><svg class="ui-icon" aria-hidden="true"><use href="#i-arrow"></use></svg></span><div class="new-price">47,000<small>원/월</small></div><span class="save-badge">월 18,000원 할인</span></article>
+    <article class="neon-price-card fade-in"><div class="mini-bot"><svg class="ui-icon" aria-hidden="true"><use href="#i-bot"></use></svg></div><div class="bot-count">6개</div><div class="old-price">77,000원/월</div><span class="price-arrow"><svg class="ui-icon" aria-hidden="true"><use href="#i-arrow"></use></svg></span><div class="new-price">56,000<small>원/월</small></div><span class="save-badge">월 21,000원 할인</span></article>
+    <article class="neon-price-card fade-in"><div class="mini-bot"><svg class="ui-icon" aria-hidden="true"><use href="#i-bot"></use></svg></div><div class="bot-count">7개</div><div class="old-price">89,000원/월</div><span class="price-arrow"><svg class="ui-icon" aria-hidden="true"><use href="#i-arrow"></use></svg></span><div class="new-price">65,000<small>원/월</small></div><span class="save-badge">월 24,000원 할인</span></article>
+    <article class="neon-price-card fade-in"><div class="mini-bot"><svg class="ui-icon" aria-hidden="true"><use href="#i-bot"></use></svg></div><div class="bot-count">8개</div><div class="old-price">101,000원/월</div><span class="price-arrow"><svg class="ui-icon" aria-hidden="true"><use href="#i-arrow"></use></svg></span><div class="new-price">74,000<small>원/월</small></div><span class="save-badge">월 27,000원 할인</span></article>
+    <article class="neon-price-card fade-in"><div class="mini-bot"><svg class="ui-icon" aria-hidden="true"><use href="#i-bot"></use></svg></div><div class="bot-count">9개</div><div class="old-price">113,000원/월</div><span class="price-arrow"><svg class="ui-icon" aria-hidden="true"><use href="#i-arrow"></use></svg></span><div class="new-price">83,000<small>원/월</small></div><span class="save-badge">월 30,000원 할인</span></article>
+    <article class="neon-price-card featured fade-in"><div class="price-ribbon"><svg class="ui-icon fill" aria-hidden="true"><use href="#i-spark"></use></svg> 최대 할인</div><div class="mini-bot"><svg class="ui-icon" aria-hidden="true"><use href="#i-bot"></use></svg></div><div class="bot-count">10개</div><div class="old-price">125,000원/월</div><span class="price-arrow"><svg class="ui-icon" aria-hidden="true"><use href="#i-arrow"></use></svg></span><div class="new-price">90,000<small>원/월</small></div><span class="save-badge">월 35,000원 할인</span></article>
   </div>
-  <a class="bulk-contact fade-in" href="https://discord.gg/9sAm7hM4t8" target="_blank" rel="noopener noreferrer"><span class="tag-icon">🏷️</span><strong>11개 이상 별도 문의</strong><span>운영 규모에 맞춘 대량 할인 견적을 안내해 드려요 →</span></a>
+  <a class="bulk-contact fade-in" href="https://discord.gg/9sAm7hM4t8" target="_blank" rel="noopener noreferrer"><span class="tag-icon"><svg class="ui-icon" aria-hidden="true"><use href="#i-tag"></use></svg></span><strong>11개 이상 별도 문의</strong><span>운영 규모에 맞춘 대량 할인 견적을 안내해 드려요 <svg class="ui-icon" aria-hidden="true"><use href="#i-arrow"></use></svg></span></a>
 
   <!-- Guarantee -->
   <div class="guarantee-box fade-in">
-    <div class="g-icon">🛡️</div>
+    <div class="g-icon"><svg class="ui-icon" aria-hidden="true"><use href="#i-shield"></use></svg></div>
     <h4>100% 환불 보장</h4>
     <p>서비스가 기대에 미치지 못한 경우 환불을 도와드립니다. 부담 없이 문의 후 시작해보세요.</p>
   </div>
@@ -411,7 +517,7 @@ body{background:radial-gradient(circle at 50% -10%,rgba(72,64,255,.3),transparen
 
 <!-- HOW -->
 <section id="how"><div class="container">
-  <div class="features-header fade-in"><div class="section-label">✦ How it works</div><h2 class="section-title">3단계로 간단하게</h2><p class="section-desc">복잡한 과정 없이, DM 한 번이면 충분합니다.</p></div>
+  <div class="features-header fade-in"><div class="section-label"><span class="section-mark" aria-hidden="true"></span> How it works</div><h2 class="section-title">3단계로 간단하게</h2><p class="section-desc">복잡한 과정 없이, DM 한 번이면 충분합니다.</p></div>
   <div class="steps-grid">
     <div class="step-card fade-in"><div class="step-num">1</div><h3>DM으로 문의</h3><p>원하는 봇 수량과 운영 환경을 알려주세요. 맞춤 상담을 진행합니다.</p></div>
     <div class="step-card fade-in"><div class="step-num">2</div><h3>맞춤 세팅</h3><p>봇 이름, 프로필, 메시지, 스케줄 등 원하는 대로 세팅해드립니다.</p></div>
@@ -421,50 +527,50 @@ body{background:radial-gradient(circle at 50% -10%,rgba(72,64,255,.3),transparen
 
 <!-- TESTIMONIALS 6 cards -->
 <section class="testimonials"><div class="container">
-  <div class="features-header fade-in"><div class="section-label">✦ Reviews</div><h2 class="section-title">이미 많은 분들이 사용 중</h2><p class="section-desc">실제 LumiOn 사용자분들의 솔직한 후기입니다.</p></div>
+  <div class="features-header fade-in"><div class="section-label"><span class="section-mark" aria-hidden="true"></span> Reviews</div><h2 class="section-title">이미 많은 분들이 사용 중</h2><p class="section-desc">실제 LumiOn 사용자분들의 솔직한 후기입니다.</p></div>
   <div class="testimonial-grid">
     <div class="testimonial-card fade-in">
-      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-stars" aria-label="5점"><svg class="ui-icon fill"><use href="#i-spark"></use></svg><svg class="ui-icon fill"><use href="#i-spark"></use></svg><svg class="ui-icon fill"><use href="#i-spark"></use></svg><svg class="ui-icon fill"><use href="#i-spark"></use></svg><svg class="ui-icon fill"><use href="#i-spark"></use></svg></div>
       <p class="testimonial-text">"매번 수동으로 홍보하던 게 봇 하나로 해결됐습니다. 서버 유입이 눈에 띄게 늘었어요!"</p>
-      <div class="testimonial-author"><div class="testimonial-avatar ta-1">🎮</div><div><div class="testimonial-name">게임서버 운영자 A</div><div class="testimonial-role">봇 3개 · 6개월 사용</div><span class="testimonial-badge tb-verified">✓ 인증된 사용자</span></div></div>
+      <div class="testimonial-author"><div class="testimonial-avatar ta-1"><svg class="ui-icon" aria-hidden="true"><use href="#i-game"></use></svg></div><div><div class="testimonial-name">게임서버 운영자 A</div><div class="testimonial-role">봇 3개 · 6개월 사용</div><span class="testimonial-badge tb-verified">✓ 인증된 사용자</span></div></div>
     </div>
     <div class="testimonial-card fade-in">
-      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-stars" aria-label="5점"><svg class="ui-icon fill"><use href="#i-spark"></use></svg><svg class="ui-icon fill"><use href="#i-spark"></use></svg><svg class="ui-icon fill"><use href="#i-spark"></use></svg><svg class="ui-icon fill"><use href="#i-spark"></use></svg><svg class="ui-icon fill"><use href="#i-spark"></use></svg></div>
       <p class="testimonial-text">"세팅도 빠르고 로그 확인도 편해서 관리가 정말 쉽습니다. 가격 대비 최고예요."</p>
-      <div class="testimonial-author"><div class="testimonial-avatar ta-2">🏰</div><div><div class="testimonial-name">클랜 리더 B</div><div class="testimonial-role">봇 2개 · 4개월 사용</div><span class="testimonial-badge tb-verified">✓ 인증된 사용자</span></div></div>
+      <div class="testimonial-author"><div class="testimonial-avatar ta-2"><svg class="ui-icon" aria-hidden="true"><use href="#i-castle"></use></svg></div><div><div class="testimonial-name">클랜 리더 B</div><div class="testimonial-role">봇 2개 · 4개월 사용</div><span class="testimonial-badge tb-verified">✓ 인증된 사용자</span></div></div>
     </div>
     <div class="testimonial-card fade-in">
-      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-stars" aria-label="5점"><svg class="ui-icon fill"><use href="#i-spark"></use></svg><svg class="ui-icon fill"><use href="#i-spark"></use></svg><svg class="ui-icon fill"><use href="#i-spark"></use></svg><svg class="ui-icon fill"><use href="#i-spark"></use></svg><svg class="ui-icon fill"><use href="#i-spark"></use></svg></div>
       <p class="testimonial-text">"커뮤니티 5개를 동시에 홍보하는데, LumiOn 없이는 불가능했을 겁니다. 강추합니다!"</p>
-      <div class="testimonial-author"><div class="testimonial-avatar ta-3">💬</div><div><div class="testimonial-name">커뮤니티 매니저 C</div><div class="testimonial-role">봇 5개 · 8개월 사용</div><span class="testimonial-badge tb-verified">✓ 인증된 사용자</span></div></div>
+      <div class="testimonial-author"><div class="testimonial-avatar ta-3"><svg class="ui-icon" aria-hidden="true"><use href="#i-chat"></use></svg></div><div><div class="testimonial-name">커뮤니티 매니저 C</div><div class="testimonial-role">봇 5개 · 8개월 사용</div><span class="testimonial-badge tb-verified">✓ 인증된 사용자</span></div></div>
     </div>
     <div class="testimonial-card fade-in">
-      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-stars" aria-label="5점"><svg class="ui-icon fill"><use href="#i-spark"></use></svg><svg class="ui-icon fill"><use href="#i-spark"></use></svg><svg class="ui-icon fill"><use href="#i-spark"></use></svg><svg class="ui-icon fill"><use href="#i-spark"></use></svg><svg class="ui-icon fill"><use href="#i-spark"></use></svg></div>
       <p class="testimonial-text">"다른 홍보봇 써봤는데 비교도 안 됩니다. 안정성이 압도적이고 한 번도 끊긴 적이 없어요."</p>
-      <div class="testimonial-author"><div class="testimonial-avatar ta-4">⚔️</div><div><div class="testimonial-name">서버 관리자 D</div><div class="testimonial-role">봇 4개 · 5개월 사용</div><span class="testimonial-badge tb-verified">✓ 인증된 사용자</span></div></div>
+      <div class="testimonial-author"><div class="testimonial-avatar ta-4"><svg class="ui-icon" aria-hidden="true"><use href="#i-sword"></use></svg></div><div><div class="testimonial-name">서버 관리자 D</div><div class="testimonial-role">봇 4개 · 5개월 사용</div><span class="testimonial-badge tb-verified">✓ 인증된 사용자</span></div></div>
     </div>
     <div class="testimonial-card fade-in">
-      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-stars" aria-label="5점"><svg class="ui-icon fill"><use href="#i-spark"></use></svg><svg class="ui-icon fill"><use href="#i-spark"></use></svg><svg class="ui-icon fill"><use href="#i-spark"></use></svg><svg class="ui-icon fill"><use href="#i-spark"></use></svg><svg class="ui-icon fill"><use href="#i-spark"></use></svg></div>
       <p class="testimonial-text">"DM 문의하니까 10분 만에 세팅 완료. 이 가격에 이 퀄리티면 진짜 혜자입니다."</p>
-      <div class="testimonial-author"><div class="testimonial-avatar ta-5">🎯</div><div><div class="testimonial-name">홍보방 운영자 E</div><div class="testimonial-role">봇 1개 · 3개월 사용</div><span class="testimonial-badge tb-verified">✓ 인증된 사용자</span></div></div>
+      <div class="testimonial-author"><div class="testimonial-avatar ta-5"><svg class="ui-icon" aria-hidden="true"><use href="#i-target"></use></svg></div><div><div class="testimonial-name">홍보방 운영자 E</div><div class="testimonial-role">봇 1개 · 3개월 사용</div><span class="testimonial-badge tb-verified">✓ 인증된 사용자</span></div></div>
     </div>
     <div class="testimonial-card fade-in">
-      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-stars" aria-label="5점"><svg class="ui-icon fill"><use href="#i-spark"></use></svg><svg class="ui-icon fill"><use href="#i-spark"></use></svg><svg class="ui-icon fill"><use href="#i-spark"></use></svg><svg class="ui-icon fill"><use href="#i-spark"></use></svg><svg class="ui-icon fill"><use href="#i-spark"></use></svg></div>
       <p class="testimonial-text">"솔직히 반신반의했는데 써보니까 유입 3배 올랐습니다. 이제 없으면 안 되는 존재예요."</p>
-      <div class="testimonial-author"><div class="testimonial-avatar ta-6">🚀</div><div><div class="testimonial-name">스트리머 F</div><div class="testimonial-role">봇 2개 · 7개월 사용</div><span class="testimonial-badge tb-verified">✓ 인증된 사용자</span></div></div>
+      <div class="testimonial-author"><div class="testimonial-avatar ta-6"><svg class="ui-icon" aria-hidden="true"><use href="#i-rocket"></use></svg></div><div><div class="testimonial-name">스트리머 F</div><div class="testimonial-role">봇 2개 · 7개월 사용</div><span class="testimonial-badge tb-verified">✓ 인증된 사용자</span></div></div>
     </div>
   </div>
 </div></section>
 
 <!-- FAQ -->
 <section id="faq"><div class="container">
-  <div class="features-header fade-in"><div class="section-label">✦ FAQ</div><h2 class="section-title">자주 묻는 질문</h2></div>
+  <div class="features-header fade-in"><div class="section-label"><span class="section-mark" aria-hidden="true"></span> FAQ</div><h2 class="section-title">자주 묻는 질문</h2></div>
   <div class="faq-list">
-    <div class="faq-item fade-in"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">봇은 24시간 작동하나요?<span class="faq-arrow">▾</span></div><div class="faq-a"><p>네, 안정적인 서버에서 24시간 365일 중단 없이 운영됩니다. 간헐적 점검 시에는 사전 공지 드립니다.</p></div></div>
-    <div class="faq-item fade-in"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">어떤 채널에서 사용 가능한가요?<span class="faq-arrow">▾</span></div><div class="faq-a"><p>허용된 홍보 채널에서만 사용 가능합니다. 디스코드 서비스 약관을 준수하며, 운영자와 사전 협의 후 채널을 설정합니다.</p></div></div>
-    <div class="faq-item fade-in"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">결제 방법은 무엇인가요?<span class="faq-arrow">▾</span></div><div class="faq-a"><p>계좌이체, 토스 등 다양한 방법을 지원합니다. DM으로 문의 시 상세 안내드리겠습니다.</p></div></div>
-    <div class="faq-item fade-in"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">중도 해지가 가능한가요?<span class="faq-arrow">▾</span></div><div class="faq-a"><p>네, 언제든 해지 가능하며 잔여 기간에 대한 환불도 협의 가능합니다.</p></div></div>
-    <div class="faq-item fade-in"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">무료 체험이 가능한가요?<span class="faq-arrow">▾</span></div><div class="faq-a"><p>네, 3일간 무료 체험이 가능합니다. 체험 후 만족하지 못하시면 비용이 청구되지 않습니다.</p></div></div>
+    <div class="faq-item fade-in"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">봇은 24시간 작동하나요?<span class="faq-arrow"><svg class="ui-icon" aria-hidden="true"><use href="#i-chevron"></use></svg></span></div><div class="faq-a"><p>네, 안정적인 서버에서 24시간 365일 중단 없이 운영됩니다. 간헐적 점검 시에는 사전 공지 드립니다.</p></div></div>
+    <div class="faq-item fade-in"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">어떤 채널에서 사용 가능한가요?<span class="faq-arrow"><svg class="ui-icon" aria-hidden="true"><use href="#i-chevron"></use></svg></span></div><div class="faq-a"><p>허용된 홍보 채널에서만 사용 가능합니다. 디스코드 서비스 약관을 준수하며, 운영자와 사전 협의 후 채널을 설정합니다.</p></div></div>
+    <div class="faq-item fade-in"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">결제 방법은 무엇인가요?<span class="faq-arrow"><svg class="ui-icon" aria-hidden="true"><use href="#i-chevron"></use></svg></span></div><div class="faq-a"><p>계좌이체, 토스 등 다양한 방법을 지원합니다. DM으로 문의 시 상세 안내드리겠습니다.</p></div></div>
+    <div class="faq-item fade-in"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">중도 해지가 가능한가요?<span class="faq-arrow"><svg class="ui-icon" aria-hidden="true"><use href="#i-chevron"></use></svg></span></div><div class="faq-a"><p>네, 언제든 해지 가능하며 잔여 기간에 대한 환불도 협의 가능합니다.</p></div></div>
+    <div class="faq-item fade-in"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">무료 체험이 가능한가요?<span class="faq-arrow"><svg class="ui-icon" aria-hidden="true"><use href="#i-chevron"></use></svg></span></div><div class="faq-a"><p>네, 3일간 무료 체험이 가능합니다. 체험 후 만족하지 못하시면 비용이 청구되지 않습니다.</p></div></div>
   </div>
 </div></section>
 
@@ -473,7 +579,7 @@ body{background:radial-gradient(circle at 50% -10%,rgba(72,64,255,.3),transparen
   <div class="cta-card fade-in">
     <h2>지금 시작하세요</h2>
     <p>DM 한 번으로 자동 홍보가 시작됩니다. 더 이상 수동 홍보에 시간을 쓰지 마세요.</p>
-    <a href="https://discord.gg/9sAm7hM4t8" class="btn" target="_blank" rel="noopener noreferrer">💬 DM으로 문의하기</a>
+    <a href="https://discord.gg/9sAm7hM4t8" class="btn" target="_blank" rel="noopener noreferrer"><svg class="ui-icon" aria-hidden="true"><use href="#i-chat"></use></svg> DM으로 문의하기</a>
   </div>
 </div></section>
 
@@ -518,6 +624,15 @@ const statsObs=new IntersectionObserver((entries)=>{
 },{threshold:0.3});
 const statsEl=document.querySelector('.hero-stats');
 if(statsEl)statsObs.observe(statsEl);
+
+// Duplicate each clan row once for a seamless, accessible marquee.
+document.querySelectorAll('.clan-track').forEach(track=>{
+  [...track.children].forEach(card=>{
+    const clone=card.cloneNode(true);
+    clone.setAttribute('aria-hidden','true');
+    track.appendChild(clone);
+  });
+});
 
 </script>
 </body>

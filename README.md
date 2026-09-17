@@ -55,6 +55,19 @@ sudo systemctl status lumion
 sudo journalctl -u lumion -f
 ```
 
+## 🤖 Discord 봇 상시 운영
+
+라즈베리파이에서는 메인 봇을 수동 `nohup`이 아닌 systemd로 실행하세요. 이렇게 하면 부팅 후 자동 시작되고, 네트워크 오류나 프로세스 종료 시 5초 뒤 자동 재시작됩니다.
+
+```bash
+sudo cp server/lumion-bot.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now lumion-bot.service
+sudo journalctl -u lumion-bot.service -f
+```
+
+메인 봇의 Discord 상태에는 `PRESENCE_ACTIVITY_TEXT` 환경 변수(기본값: `24시간 깨어있는중`)가 표시됩니다. 상태 표시용 별도 연결은 사용하지 않아 중복 Gateway 세션과 끊김을 줄였습니다.
+
 
 ## ⚙️ 환경 변수
 
