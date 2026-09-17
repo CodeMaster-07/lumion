@@ -343,6 +343,54 @@ body{background:radial-gradient(circle at 50% -10%,rgba(72,64,255,.3),transparen
 @media(prefers-reduced-motion:reduce){.clan-track{animation-play-state:paused}}
   .bot-avatar img{width:118%;height:118%;object-fit:contain;filter:drop-shadow(0 10px 12px rgba(29,12,63,.5))}
   .mini-bot img{width:118%;height:118%;object-fit:contain;filter:drop-shadow(0 3px 5px rgba(255,65,208,.55))}
+@media(max-width:768px){
+  .container{padding-left:16px;padding-right:16px}
+  nav{padding:10px 0}
+  .nav-inner{padding-left:16px;padding-right:16px}
+  .logo{font-size:1.18rem;gap:7px}.logo-icon{width:34px;height:34px;border-radius:10px}
+  .nav-links{top:58px;padding:10px 16px 14px;gap:2px}
+  .nav-links a{width:100%;padding:11px 13px;font-size:.9rem}
+  .hero{padding:108px 0 54px}
+  .hero-badge{font-size:.72rem;padding:7px 12px 7px 10px;margin-bottom:20px}
+  .hero h1{font-size:clamp(2.35rem,12vw,3.55rem);line-height:1.06;word-break:keep-all;margin-bottom:17px}
+  .hero p{font-size:.96rem;line-height:1.6;margin-bottom:26px;word-break:keep-all}
+  .hero-buttons{flex-direction:column;align-items:stretch;gap:10px}
+  .hero-buttons .btn{width:100%;justify-content:center;padding:13px 18px}
+  .hero-bot-scene{min-height:274px;margin-top:8px}
+  .hero-bot-scene::before{width:290px;height:290px}
+  .bot-avatar{width:195px;height:195px}
+  .orbit{width:300px;height:160px}
+  .hero-visual{margin-top:22px}
+  .hero-stats{gap:10px}
+  .stat-card{padding:20px 8px;border-radius:18px}
+  .stat-icon{font-size:1.62rem;margin-bottom:8px}
+  .stat-number{font-size:1.5rem}.stat-label{font-size:.7rem;white-space:nowrap}
+  .trust-bar{gap:10px 17px;margin-top:28px}.trust-item{font-size:.72rem;gap:5px}
+  section{padding:72px 0}
+  .section-title{font-size:clamp(1.9rem,8.5vw,2.5rem);word-break:keep-all}
+  .section-desc{font-size:.92rem;word-break:keep-all}
+  .features-header{margin-bottom:34px}.feature-card{padding:25px 22px}
+  .clan-showcase{padding:64px 0 72px}.clan-showcase-head{margin-bottom:30px}
+  .clan-proof{font-size:.68rem;padding:6px 11px}.clan-showcase .section-title{font-size:clamp(1.9rem,8.5vw,2.45rem)}
+  .clan-showcase .section-desc{font-size:.88rem}.clan-result-strip{gap:11px 18px}.clan-result{font-size:.72rem;gap:6px}
+  .neon-price-grid{gap:14px;margin-top:34px}.neon-price-card{padding:23px 11px 19px;border-radius:18px}
+  .mini-bot{width:62px;height:52px;margin-bottom:9px}.bot-count{font-size:1.2rem;margin-bottom:9px}
+  .old-price{font-size:.76rem}.price-arrow{font-size:1.2rem}.new-price{font-size:1.3rem}.save-badge{font-size:.6rem;margin-top:10px;padding:4px 7px}
+  .price-ribbon{top:-13px;font-size:.65rem;padding:4px 12px}
+  .bulk-contact{padding:16px 14px;margin-top:20px;gap:5px}.bulk-contact strong{font-size:.95rem}.bulk-contact span{font-size:.74rem;line-height:1.45}
+  .steps-grid{margin-top:38px;gap:16px}.step-card{padding:24px 20px}
+  .testimonial-grid{gap:14px}.testimonial-card{padding:22px 19px}
+  .cta-section{padding:72px 0 84px}.cta-card{padding:40px 18px;border-radius:24px}.cta-card p{font-size:.9rem;margin-bottom:26px}.cta-card .btn{width:100%;justify-content:center}
+  footer{padding:30px 0}footer p{font-size:.76rem}
+}
+@media(max-width:430px){
+  .container{padding-left:14px;padding-right:14px}.nav-inner{padding-left:14px;padding-right:14px}
+  .hero{padding-top:100px}.hero h1{font-size:clamp(2.15rem,11.8vw,3.15rem)}
+  .hero-bot-scene{min-height:248px}.bot-avatar{width:174px;height:174px}.orbit{width:270px;height:145px}
+  .hero-stats{gap:8px}.stat-card{padding:17px 5px}.stat-number{font-size:1.34rem}.stat-label{font-size:.64rem}
+  .trust-bar{gap:8px 12px}.trust-item{font-size:.66rem}
+  .neon-price-grid{max-width:330px}.clan-card{width:142px;flex-basis:142px}.clan-card img,.clan-logo-fallback{width:120px;height:100px}
+}
 </style>
 </head>
 <body>
